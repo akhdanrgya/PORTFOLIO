@@ -56,7 +56,7 @@ export default function Hero({ about }: { about: About | null }) {
       )}
 
       {/* Floating orbs */}
-      <div className="orb w-96 h-96 bg-purple-700 top-10 -left-20 animation-delay-0" />
+      <div className="orb w-96 h-96 bg-purple-700 top-10 -left-20" style={{ animationDelay: "0ms" }} />
       <div className="orb w-80 h-80 bg-violet-600 bottom-20 -right-16" style={{ animationDelay: "3s" }} />
       <div className="orb w-64 h-64 bg-purple-900 top-1/2 left-1/3" style={{ animationDelay: "1.5s" }} />
 
