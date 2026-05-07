@@ -4,8 +4,8 @@ import type { About } from "@/lib/supabase";
 
 export default function AboutSection({ about }: { about: About | null }) {
   return (
-    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
+    <section id="about" className="w-full py-24 px-4 sm:px-6 lg:px-8 flex justify-center">
+      <div className="w-full max-w-6xl">
         <AnimatedSection className="text-center mb-16">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">About Me</span>
           <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">
@@ -39,8 +39,8 @@ export default function AboutSection({ about }: { about: About | null }) {
 
           {/* Bio text */}
           <AnimatedSection direction="right">
-            <div className="space-y-6">
-              <div className="glass-card p-6">
+            <div className="flex flex-col gap-6 text-center lg:text-left">
+              <div className="glass-card px-8 py-8 sm:px-12 sm:py-10">
                 <p className="text-slate-300 leading-relaxed text-lg">
                   {about?.bio ||
                     "Hello! I'm Akhdan, a Software Engineer and Fullstack Developer passionate about building digital solutions. Currently pursuing an Information Systems degree at Telkom University."}
@@ -51,19 +51,19 @@ export default function AboutSection({ about }: { about: About | null }) {
               <div className="grid grid-cols-2 gap-3">
                 {[
                   { label: "University", value: "Telkom University", icon: "🎓" },
-                  { label: "Major", value: "Information Systems B.Sc", icon: "📚" },
+                  { label: "Major", value: "Information Systems", icon: "📚" },
                   { label: "Role", value: "Fullstack Developer", icon: "💻" },
                   { label: "Startup", value: "Founder of GokilTech", icon: "🚀" },
                 ].map((item) => (
-                  <div key={item.label} className="glass-card p-4">
-                    <span className="text-xl mb-2 block">{item.icon}</span>
-                    <p className="text-xs text-slate-500 uppercase tracking-wide">{item.label}</p>
-                    <p className="text-sm text-slate-200 font-medium mt-0.5">{item.value}</p>
+                  <div key={item.label} className="glass-card px-6 py-8 flex flex-col items-center lg:items-start text-center lg:text-left">
+                    <span className="text-2xl mb-3 block">{item.icon}</span>
+                    <p className="text-[11px] text-slate-500 uppercase tracking-widest">{item.label}</p>
+                    <p className="text-sm text-slate-200 font-semibold mt-1">{item.value}</p>
                   </div>
                 ))}
               </div>
 
-              <div className="flex gap-3">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-3">
                 <a
                   href="https://linkedin.com/in/akhdan-anargya-arisadi-b67100270/"
                   target="_blank"

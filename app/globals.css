@@ -289,10 +289,10 @@ body {
 /* ─── Section header ─────────────────────────────────────── */
 .section-divider {
   width: 48px;
-  height: 3px;
-  background: linear-gradient(90deg, #7c3aed, #a855f7, transparent);
+  height: 4px;
+  background: linear-gradient(90deg, transparent, #a855f7, #c084fc, transparent);
   border-radius: 2px;
-  margin: 10px 0 20px;
+  margin: 12px auto 24px;
 }
 
 /* ─── Tag pill ───────────────────────────────────────────── */

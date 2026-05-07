@@ -12,8 +12,8 @@ export default function ExperienceSection({ experiences }: { experiences: Experi
   if (experiences.length === 0) return null;
 
   return (
-    <section id="experience" className="py-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <section id="experience" className="w-full py-24 px-4 sm:px-6 lg:px-8 flex justify-center">
+      <div className="w-full max-w-4xl">
         <AnimatedSection className="text-center mb-16">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">Career</span>
           <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">

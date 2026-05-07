@@ -64,11 +64,11 @@ const contacts = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="py-28 px-6 relative overflow-hidden">
+    <section id="contact" className="w-full py-28 px-6 relative overflow-hidden flex flex-col items-center">
       {/* Background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] rounded-full bg-purple-700/6 blur-3xl pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto relative">
+      <div className="w-full max-w-4xl relative">
         <AnimatedSection className="text-center mb-16">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">Get In Touch</span>
           <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">
@@ -130,7 +130,7 @@ export default function Contact() {
       </div>
 
       {/* Footer */}
-      <div className="max-w-6xl mx-auto px-6 mt-20 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="w-full max-w-6xl px-6 mt-20 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
         <p className="text-slate-600 text-sm">
           © {new Date().getFullYear()} Akhdan Anargya Arisadi. Built with Next.js + Supabase.
         </p>
