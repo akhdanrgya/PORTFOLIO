@@ -31,7 +31,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
   const categories = [...new Set(displaySkills.map((s) => s.category).filter(Boolean))] as string[];
 
   return (
-    <section id="skills" className="py-24 px-6 relative overflow-hidden">
+    <section id="skills" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-purple-700/5 blur-3xl pointer-events-none" />
 

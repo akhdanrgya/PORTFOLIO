@@ -16,7 +16,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
   const featured = projects.filter((p) => p.featured);
 
   return (
-    <section id="projects" className="py-24 px-6">
+    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <AnimatedSection className="text-center mb-16">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">Portfolio</span>

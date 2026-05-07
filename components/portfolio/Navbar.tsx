@@ -22,7 +22,12 @@ export default function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Intersection observer for active section
+  useEffect(() => {
+    const onResize = () => { if (window.innerWidth >= 1024) setMenuOpen(false); };
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
+  }, []);
+
   useEffect(() => {
     const sections = navLinks.map((l) => document.querySelector(l.href));
     const observer = new IntersectionObserver(
@@ -38,77 +43,104 @@ export default function Navbar() {
   }, []);
 
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled
-          ? "bg-dark-100/80 backdrop-blur-xl border-b border-purple-500/20 shadow-lg"
-          : "bg-transparent"
-      }`}
-    >
-      <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-violet-500 flex items-center justify-center text-white font-bold text-sm shadow-glow group-hover:shadow-purple-lg transition-all duration-300">
-            AA
+    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 sm:px-6 pointer-events-none">
+      <nav
+        className={`w-full max-w-6xl transition-all duration-300 rounded-2xl pointer-events-auto ${
+          scrolled
+            ? "bg-[#0f0f1a]/85 backdrop-blur-xl border border-purple-500/15 shadow-lg shadow-black/20"
+            : "bg-transparent border border-transparent"
+        }`}
+      >
+        {/* Wrapper — h-16, relative so the absolute nav center is relative to the pill width */}
+        <div className="relative h-16 px-4 sm:px-6 flex items-center justify-between">
+
+          {/* ── Logo (left) ── */}
+          <Link href="/" className="flex items-center gap-3 group shrink-0 z-10">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-violet-500 flex items-center justify-center text-white font-bold text-sm shadow-lg group-hover:shadow-purple-500/30 transition-all duration-300">
+              AA
+            </div>
+            <span className="font-bold text-white text-sm hidden sm:block tracking-tight">
+              Akhdan<span className="text-purple-400">.</span>
+            </span>
+          </Link>
+
+          {/* ── Nav links — absolutely centered relative to the pill ── */}
+          <div className="hidden lg:flex items-center gap-2 absolute left-1/2 -translate-x-1/2">
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => setActive(link.href)}
+                className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 shrink-0 border ${
+                  active === link.href
+                    ? "text-purple-300 bg-purple-500/10 border-purple-500/20"
+                    : "text-slate-400 hover:text-slate-100 border-transparent hover:bg-white/5"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
           </div>
-          <span className="font-bold text-white text-sm hidden sm:block">
-            Akhdan<span className="text-purple-400">.</span>
-          </span>
-        </Link>
 
-        {/* Desktop nav */}
-        <div className="hidden md:flex items-center gap-1">
-          {navLinks.map((link) => (
+          {/* ── Right side (CTA + hamburger) ── */}
+          <div className="flex items-center gap-3 shrink-0 z-10">
+            {/* Hire Me — desktop only */}
             <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setActive(link.href)}
-              className={`px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ${
-                active === link.href
-                  ? "text-purple-300 bg-purple-500/10"
-                  : "text-slate-400 hover:text-slate-200 hover:bg-white/5"
-              }`}
+              href="mailto:akhdan.anargya@gmail.com"
+              className="hidden lg:inline-flex btn-glow text-sm rounded-xl shrink-0"
             >
-              {link.label}
+              <span>Hire Me</span>
             </a>
-          ))}
+
+            {/* Hamburger — mobile/tablet */}
+            <button
+              className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[6px] rounded-xl hover:bg-white/5 transition-colors"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="Toggle menu"
+            >
+              <span className={`block w-5 h-0.5 bg-slate-300 rounded-full transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[8px]" : ""}`} />
+              <span className={`block w-5 h-0.5 bg-slate-300 rounded-full transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
+              <span className={`block w-5 h-0.5 bg-slate-300 rounded-full transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-[8px]" : ""}`} />
+            </button>
+          </div>
         </div>
 
-        {/* CTA */}
-        <a
-          href="mailto:akhdan.anargya@gmail.com"
-          className="hidden md:block btn-glow px-4 py-2 text-sm"
+        {/* ── Mobile / tablet dropdown ── */}
+        <div
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out rounded-b-2xl ${
+            menuOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
+          }`}
         >
-          <span>Hire Me</span>
-        </a>
-
-        {/* Mobile menu toggle */}
-        <button
-          className="md:hidden text-slate-400 hover:text-white transition-colors"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Toggle menu"
-        >
-          <div className={`w-6 h-0.5 bg-current transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-1.5" : ""}`} />
-          <div className={`w-6 h-0.5 bg-current mt-1.5 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-          <div className={`w-6 h-0.5 bg-current mt-1.5 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-1.5" : ""}`} />
-        </button>
-      </div>
-
-      {/* Mobile menu */}
-      {menuOpen && (
-        <div className="md:hidden px-6 pb-6 space-y-1 bg-dark-100/95 backdrop-blur-xl border-b border-purple-500/20">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMenuOpen(false)}
-              className="block px-4 py-3 rounded-xl text-sm font-medium text-slate-300 hover:text-white hover:bg-white/5 transition-all"
-            >
-              {link.label}
-            </a>
-          ))}
+          <div
+            className="px-4 pt-2 pb-4 space-y-1 border-t border-purple-500/15"
+            style={{ background: "rgba(15,15,26,0.97)", backdropFilter: "blur(20px)" }}
+          >
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                onClick={() => { setMenuOpen(false); setActive(link.href); }}
+                className={`flex items-center px-5 py-3.5 rounded-xl text-sm font-medium transition-all duration-200 ${
+                  active === link.href
+                    ? "text-purple-300 bg-purple-500/10 border border-purple-500/20"
+                    : "text-slate-400 hover:text-white hover:bg-white/5"
+                }`}
+              >
+                {link.label}
+              </a>
+            ))}
+            <div className="pt-2 pb-1">
+              <a
+                href="mailto:akhdan.anargya@gmail.com"
+                onClick={() => setMenuOpen(false)}
+                className="btn-glow w-full text-sm rounded-xl shrink-0"
+              >
+                <span>Hire Me ✉</span>
+              </a>
+            </div>
+          </div>
         </div>
-      )}
-    </nav>
+      </nav>
+    </div>
   );
 }

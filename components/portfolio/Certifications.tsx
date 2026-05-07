@@ -12,7 +12,7 @@ export default function Certifications({ certifications }: { certifications: Cer
   if (certifications.length === 0) return null;
 
   return (
-    <section id="certifications" className="py-24 px-6">
+    <section id="certifications" className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <AnimatedSection className="text-center mb-16">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">Achievements</span>

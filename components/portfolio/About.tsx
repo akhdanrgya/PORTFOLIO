@@ -4,7 +4,7 @@ import type { About } from "@/lib/supabase";
 
 export default function AboutSection({ about }: { about: About | null }) {
   return (
-    <section id="about" className="py-24 px-6">
+    <section id="about" className="py-24 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto">
         <AnimatedSection className="text-center mb-16">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">About Me</span>
@@ -68,7 +68,7 @@ export default function AboutSection({ about }: { about: About | null }) {
                   href="https://linkedin.com/in/akhdan-anargya-arisadi-b67100270/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-glow px-5 py-2.5 text-sm"
+                  className="btn-glow text-sm shrink-0"
                 >
                   <span>LinkedIn ↗</span>
                 </a>
@@ -76,7 +76,7 @@ export default function AboutSection({ about }: { about: About | null }) {
                   href="https://github.com/akhdanrgya"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outline px-5 py-2.5 text-sm"
+                  className="btn-outline text-sm shrink-0"
                 >
                   GitHub
                 </a>

@@ -7,6 +7,7 @@ export default function LoginPage() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
   const handleSubmit = async (e: FormEvent) => {
@@ -30,15 +31,15 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0a0a0f] grid-bg flex items-center justify-center px-4 relative overflow-hidden">
+    <div className="min-h-screen grid-bg flex items-center justify-center px-4 relative overflow-hidden" style={{ background: "#0a0a0f" }}>
       {/* Orbs */}
-      <div className="orb w-96 h-96 bg-purple-700 top-0 left-0" />
-      <div className="orb w-80 h-80 bg-violet-600 bottom-0 right-0" style={{ animationDelay: "3s" }} />
+      <div className="orb w-96 h-96 bg-purple-700 top-0 -left-16" />
+      <div className="orb w-72 h-72 bg-violet-600 bottom-0 -right-12" style={{ animationDelay: "3s" }} />
 
-      <div className="relative z-10 w-full max-w-md animate-fade-in">
+      <div className="relative z-10 w-full max-w-sm animate-fade-in">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-purple-600 to-violet-500 flex items-center justify-center text-white font-black text-xl mx-auto mb-4 shadow-purple-lg">
+          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-violet-500 flex items-center justify-center text-white font-black text-lg mx-auto mb-4 shadow-lg shadow-purple-900/40">
             AA
           </div>
           <h1 className="text-2xl font-black text-white">Admin Panel</h1>
@@ -46,56 +47,101 @@ export default function LoginPage() {
         </div>
 
         {/* Form */}
-        <form
-          onSubmit={handleSubmit}
-          className="glass-card p-8 space-y-5"
-        >
-          <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">Username</label>
-            <input
-              type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
-              placeholder="Enter username"
-              required
-              className="admin-input"
-              autoComplete="username"
-            />
-          </div>
+        <div className="glass-card p-7">
+          <form onSubmit={handleSubmit} className="space-y-5">
+            <div>
+              <label className="form-label">Username</label>
+              <div className="relative">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-600">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                    <circle cx="12" cy="8" r="4" />
+                    <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                  </svg>
+                </div>
+                <input
+                  type="text"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
+                  placeholder="Enter username"
+                  required
+                  className="admin-input pl-10"
+                  autoComplete="username"
+                  id="login-username"
+                />
+              </div>
+            </div>
 
-          <div>
-            <label className="block text-sm font-medium text-slate-300 mb-2">Password</label>
-            <input
-              type="password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Enter password"
-              required
-              className="admin-input"
-              autoComplete="current-password"
-            />
-          </div>
+            <div>
+              <label className="form-label">Password</label>
+              <div className="relative">
+                <div className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-600">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                    <rect x="3" y="11" width="18" height="11" rx="2" />
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                  </svg>
+                </div>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter password"
+                  required
+                  className="admin-input pl-10 pr-10"
+                  autoComplete="current-password"
+                  id="login-password"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-slate-600 hover:text-slate-400 transition-colors"
+                >
+                  {showPassword ? (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94" />
+                      <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19" />
+                      <line x1="1" y1="1" x2="23" y2="23" />
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
+                      <circle cx="12" cy="12" r="3" />
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
 
-          <button
-            type="submit"
-            disabled={loading}
-            className="btn-glow w-full py-3 text-sm mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            <span>
-              {loading ? (
-                <span className="flex items-center justify-center gap-2">
-                  <span className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                  Logging in...
-                </span>
-              ) : (
-                "Login to Admin Panel →"
-              )}
-            </span>
-          </button>
-        </form>
+            <button
+              type="submit"
+              disabled={loading}
+              className="btn-glow w-full py-3 text-sm mt-1 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              <span className="flex items-center justify-center gap-2">
+                {loading ? (
+                  <>
+                    <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    Logging in...
+                  </>
+                ) : (
+                  <>
+                    Login to Admin Panel
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
+                      <path d="M5 12h14M12 5l7 7-7 7" />
+                    </svg>
+                  </>
+                )}
+              </span>
+            </button>
+          </form>
+        </div>
 
-        <p className="text-center text-slate-600 text-xs mt-6">
-          <a href="/" className="hover:text-slate-400 transition-colors">← Back to Portfolio</a>
+        <p className="text-center text-slate-600 text-xs mt-5">
+          <a href="/" className="hover:text-slate-400 transition-colors inline-flex items-center gap-1">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3">
+              <path d="M19 12H5M12 5l-7 7 7 7" />
+            </svg>
+            Back to Portfolio
+          </a>
         </p>
       </div>
     </div>

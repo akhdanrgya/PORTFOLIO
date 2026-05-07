@@ -1,4 +1,5 @@
 import { supabaseServer } from "@/lib/supabaseServer";
+import Link from "next/link";
 
 async function getStats() {
   const [projects, skills, experiences, certifications] = await Promise.all([
@@ -17,77 +18,164 @@ async function getStats() {
   };
 }
 
-const statCards = (stats: Awaited<ReturnType<typeof getStats>>) => [
-  { label: "Total Projects", value: stats.totalProjects, icon: "◈", color: "from-purple-500/20 to-purple-600/10 border-purple-500/30" },
-  { label: "Featured Projects", value: stats.featuredProjects, icon: "★", color: "from-yellow-500/20 to-yellow-600/10 border-yellow-500/30" },
-  { label: "Skills", value: stats.totalSkills, icon: "⚡", color: "from-blue-500/20 to-blue-600/10 border-blue-500/30" },
-  { label: "Experience", value: stats.totalExperiences, icon: "◇", color: "from-green-500/20 to-green-600/10 border-green-500/30" },
-  { label: "Certifications", value: stats.totalCertifications, icon: "◉", color: "from-pink-500/20 to-pink-600/10 border-pink-500/30" },
-];
-
-const quickLinks = [
-  { href: "/admin/about", label: "Edit About & Banner", icon: "👤", desc: "Update bio, profile photo, banner" },
-  { href: "/admin/projects", label: "Manage Projects", icon: "◈", desc: "Add or edit projects" },
-  { href: "/admin/skills", label: "Manage Skills", icon: "⚡", desc: "Add new skill" },
-  { href: "/admin/experience", label: "Manage Experience", icon: "◇", desc: "Add work experience" },
-  { href: "/admin/certifications", label: "Manage Certifications", icon: "◉", desc: "Add certificate" },
-];
-
 export default async function DashboardPage() {
   const stats = await getStats();
-  const cards = statCards(stats);
+
+  const statCards = [
+    {
+      label: "Total Projects",
+      value: stats.totalProjects,
+      color: "from-purple-500/15 to-purple-700/5",
+      border: "border-purple-500/25",
+      valueColor: "text-purple-300",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+          <rect x="3" y="3" width="7" height="7" rx="1" />
+          <rect x="14" y="3" width="7" height="7" rx="1" />
+          <rect x="3" y="14" width="7" height="7" rx="1" />
+          <rect x="14" y="14" width="7" height="7" rx="1" />
+        </svg>
+      ),
+    },
+    {
+      label: "Featured",
+      value: stats.featuredProjects,
+      color: "from-yellow-500/15 to-yellow-700/5",
+      border: "border-yellow-500/25",
+      valueColor: "text-yellow-300",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+          <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+        </svg>
+      ),
+    },
+    {
+      label: "Skills",
+      value: stats.totalSkills,
+      color: "from-blue-500/15 to-blue-700/5",
+      border: "border-blue-500/25",
+      valueColor: "text-blue-300",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+        </svg>
+      ),
+    },
+    {
+      label: "Experience",
+      value: stats.totalExperiences,
+      color: "from-green-500/15 to-green-700/5",
+      border: "border-green-500/25",
+      valueColor: "text-green-300",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+          <rect x="2" y="7" width="20" height="14" rx="2" />
+          <path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+        </svg>
+      ),
+    },
+    {
+      label: "Certificates",
+      value: stats.totalCertifications,
+      color: "from-pink-500/15 to-pink-700/5",
+      border: "border-pink-500/25",
+      valueColor: "text-pink-300",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.6} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+          <circle cx="12" cy="8" r="6" />
+          <path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+        </svg>
+      ),
+    },
+  ];
+
+  const quickLinks = [
+    { href: "/admin/about", label: "Edit About & Banner", desc: "Update bio, profile photo, banner", icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+      </svg>
+    )},
+    { href: "/admin/projects", label: "Manage Projects", desc: "Add, edit, or delete projects", icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
+        <rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" />
+      </svg>
+    )},
+    { href: "/admin/skills", label: "Manage Skills", desc: "Add or remove skills", icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+      </svg>
+    )},
+    { href: "/admin/experience", label: "Manage Experience", desc: "Add work experience entries", icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
+      </svg>
+    )},
+    { href: "/admin/certifications", label: "Manage Certifications", desc: "Add certificates & achievements", icon: (
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5">
+        <circle cx="12" cy="8" r="6" /><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
+      </svg>
+    )},
+  ];
 
   return (
-    <div className="max-w-5xl mx-auto">
-      <div className="mb-8">
-        <h1 className="text-3xl font-black text-white">Dashboard</h1>
-        <p className="text-slate-500 mt-1">Welcome back, Akhdan! 👋</p>
+    <div className="space-y-8">
+      {/* Header */}
+      <div>
+        <h1 className="text-2xl font-black text-white">Dashboard</h1>
+        <p className="text-slate-500 text-sm mt-1">Welcome back, Akhdan! 👋</p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 mb-10">
-        {cards.map((card) => (
-          <div key={card.label} className={`p-5 rounded-2xl bg-gradient-to-br border ${card.color}`}>
-            <div className="text-2xl mb-3">{card.icon}</div>
-            <div className="text-3xl font-black text-white">{card.value}</div>
-            <div className="text-xs text-slate-400 mt-1">{card.label}</div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+        {statCards.map((card) => (
+          <div key={card.label} className={`p-4 rounded-2xl bg-gradient-to-br border ${card.color} ${card.border}`}>
+            <div className={`mb-3 ${card.valueColor}`}>{card.icon}</div>
+            <div className={`text-2xl font-black ${card.valueColor}`}>{card.value}</div>
+            <div className="text-xs text-slate-500 mt-1 leading-tight">{card.label}</div>
           </div>
         ))}
       </div>
 
       {/* Quick actions */}
-      <h2 className="text-lg font-bold text-slate-300 mb-4">Quick Actions</h2>
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {quickLinks.map((link) => (
-          <a
-            key={link.href}
-            href={link.href}
-            className="glass-card p-5 flex items-center gap-4 group"
-          >
-            <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-xl group-hover:bg-purple-500/20 transition-all duration-200 shrink-0">
-              {link.icon}
-            </div>
-            <div>
-              <p className="text-white font-semibold text-sm group-hover:text-purple-300 transition-colors">{link.label}</p>
-              <p className="text-slate-500 text-xs mt-0.5">{link.desc}</p>
-            </div>
-            <span className="ml-auto text-slate-600 group-hover:text-purple-400 transition-colors">→</span>
-          </a>
-        ))}
+      <div>
+        <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-3">Quick Actions</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+          {quickLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className="group list-item flex items-center gap-3.5"
+            >
+              <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:bg-purple-500/18 group-hover:border-purple-500/35 transition-all duration-200 shrink-0">
+                {link.icon}
+              </div>
+              <div className="flex-1 min-w-0">
+                <p className="text-slate-200 font-semibold text-sm group-hover:text-white transition-colors leading-tight">{link.label}</p>
+                <p className="text-slate-600 text-xs mt-0.5 truncate">{link.desc}</p>
+              </div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-slate-700 group-hover:text-purple-400 transition-colors shrink-0">
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </Link>
+          ))}
+        </div>
       </div>
 
-      {/* View portfolio link */}
-      <div className="mt-8 p-5 rounded-2xl bg-purple-500/5 border border-purple-500/20 flex items-center justify-between">
+      {/* View portfolio banner */}
+      <div className="flex items-center justify-between p-5 rounded-2xl border border-purple-500/15" style={{ background: "linear-gradient(135deg, rgba(139,92,246,0.06), rgba(124,58,237,0.03))" }}>
         <div>
-          <p className="text-white font-semibold">View Live Portfolio</p>
-          <p className="text-slate-500 text-sm mt-0.5">Open portfolio in a new tab</p>
+          <p className="text-white font-semibold text-sm">View Live Portfolio</p>
+          <p className="text-slate-500 text-xs mt-0.5">Open your portfolio in a new tab</p>
         </div>
-        <a
-          href="/"
-          target="_blank"
-          className="btn-glow px-5 py-2.5 text-sm"
-        >
-          <span>Open ↗</span>
+        <a href="/" target="_blank" className="btn-glow px-4 py-2 text-sm">
+          <span className="flex items-center gap-1.5">
+            Open
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+              <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+              <polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
+            </svg>
+          </span>
         </a>
       </div>
     </div>
