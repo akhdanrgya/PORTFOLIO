@@ -46,15 +46,15 @@ export default function Skills({ skills }: { skills: Skill[] }) {
 
         {/* By category */}
         {categories.length > 0 ? (
-          <div className="space-y-8">
+          <div className="flex flex-col gap-10 sm:gap-12">
             {categories.map((cat) => (
-              <AnimatedSection key={cat}>
-                <div className="mb-3 flex items-center gap-3">
+              <AnimatedSection key={cat} className="flex flex-col items-center">
+                <div className="mb-8 sm:mb-10 flex items-center justify-center">
                   <span className={`tag bg-gradient-to-r ${categoryColors[cat] ?? "from-purple-500/20 to-purple-600/10 border-purple-500/30 text-purple-300"}`}>
                     {cat}
                   </span>
                 </div>
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-3 stagger-children animated">
+                <div className="flex flex-wrap justify-center gap-4 stagger-children animated w-full max-w-5xl">
                   {displaySkills
                     .filter((s) => s.category === cat)
                     .map((skill) => (
@@ -65,8 +65,8 @@ export default function Skills({ skills }: { skills: Skill[] }) {
             ))}
           </div>
         ) : (
-          <AnimatedSection stagger>
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+          <AnimatedSection stagger className="flex flex-col items-center">
+            <div className="flex flex-wrap justify-center gap-4 w-full max-w-5xl">
               {displaySkills.map((skill) => (
                 <SkillCard key={skill.id} skill={skill} />
               ))}
@@ -80,7 +80,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
 
 function SkillCard({ skill }: { skill: Skill }) {
   return (
-    <div className="glass-card p-4 flex flex-col items-center gap-2 group cursor-default">
+    <div className="glass-card w-[105px] sm:w-[120px] p-4 flex flex-col items-center justify-center gap-3 group cursor-default">
       <div className="w-10 h-10 relative">
         {skill.icon_url ? (
           <Image
