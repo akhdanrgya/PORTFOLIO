@@ -33,7 +33,7 @@ export default async function HomePage() {
   const { about, skills, projects, experiences, certifications } = await getData();
 
   return (
-    <main>
+    <main className="flex flex-col gap-24 lg:gap-32 overflow-hidden pb-24">
       <Navbar />
       <Hero about={about} />
       <AboutSection about={about} />

@@ -31,7 +31,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
   const categories = [...new Set(displaySkills.map((s) => s.category).filter(Boolean))] as string[];
 
   return (
-    <section id="skills" className="w-full py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex justify-center">
+    <section id="skills" className="w-full py-32 lg:py-40 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex justify-center">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-purple-700/5 blur-3xl pointer-events-none" />
 
@@ -48,7 +48,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
         {categories.length > 0 ? (
           <div className="flex flex-col gap-10 sm:gap-12">
             {categories.map((cat) => (
-              <AnimatedSection key={cat} className="flex flex-col items-center">
+              <AnimatedSection key={cat} className="flex flex-col items-center gap-6">
                 <div className="mb-8 sm:mb-10 flex items-center justify-center">
                   <span className={`tag bg-gradient-to-r ${categoryColors[cat] ?? "from-purple-500/20 to-purple-600/10 border-purple-500/30 text-purple-300"}`}>
                     {cat}

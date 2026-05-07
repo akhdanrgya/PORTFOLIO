@@ -64,7 +64,7 @@ const contacts = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="w-full py-28 px-6 relative overflow-hidden flex flex-col items-center">
+    <section id="contact" className="w-full py-32 lg:py-40 px-6 relative overflow-hidden flex flex-col items-center">
       {/* Background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] rounded-full bg-purple-700/6 blur-3xl pointer-events-none" />
 
