@@ -125,7 +125,7 @@ export default function ProjectsAdminPage() {
             {editId ? "Edit Project" : "Add New Project"}
           </h2>
 
-          <div className="grid sm:grid-cols-2 gap-4 mb-4">
+          <div className="grid sm:grid-cols-2 gap-6 mb-6">
             <div className="sm:col-span-2">
               <label className="form-label">Project Title <span>*</span></label>
               <input type="text" value={form.title ?? ""} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="Project name" className="admin-input" />
@@ -200,9 +200,9 @@ export default function ProjectsAdminPage() {
           <p className="text-xs text-slate-600 mt-1">Click &quot;Add Project&quot; to get started</p>
         </div>
       ) : (
-        <div className="space-y-2">
+        <div className="space-y-4">
           {projects.map((project) => (
-            <div key={project.id} className="list-item flex items-center gap-4">
+            <div key={project.id} className="list-item flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
               {/* Thumbnail */}
               <div className="relative w-16 h-11 rounded-lg overflow-hidden shrink-0 border border-white/5">
                 {project.thumbnail_url ? (
@@ -234,7 +234,7 @@ export default function ProjectsAdminPage() {
               </div>
 
               {/* Actions */}
-              <div className="flex items-center gap-2 shrink-0">
+              <div className="flex items-center gap-3 shrink-0 sm:ml-auto w-full sm:w-auto mt-2 sm:mt-0">
                 <button
                   onClick={() => toggleFeatured(project)}
                   className={`px-2.5 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${

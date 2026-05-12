@@ -14,18 +14,18 @@ const supabase = createClient(supabaseUrl, supabaseKey);
 async function run() {
   console.log("Generating hash for password...");
   const hash = await bcrypt.hash("Ayahtoni74", 12);
-  
-  console.log("Inserting admin 'akhdanrya' to Supabase...");
+
+  console.log("Inserting admin 'akhdanrgya' to Supabase...");
   const { error } = await supabase.from("admins").insert([
     {
-      username: "akhdanrya",
+      username: "akhdanrgya",
       password_hash: hash
     }
   ]);
 
   if (error) {
     if (error.code === '23505') {
-      console.log("✅ Admin 'akhdanrya' sudah ada di database.");
+      console.log("✅ Admin 'akhdanrgya' sudah ada di database.");
     } else {
       console.error("❌ Error Supabase:", error.message);
     }

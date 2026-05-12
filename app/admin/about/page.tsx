@@ -90,7 +90,7 @@ export default function AboutAdminPage() {
           </svg>
           Profile Photo
         </h2>
-        <div className="flex items-start gap-6">
+        <div className="flex flex-col sm:flex-row items-start gap-6 sm:gap-8">
           <ImageUpload
             value={data.profile_photo_url ?? null}
             onChange={(url) => setData((d) => ({ ...d, profile_photo_url: url }))}
@@ -118,7 +118,7 @@ export default function AboutAdminPage() {
           </svg>
           Bio & Tagline
         </h2>
-        <div className="space-y-4">
+        <div className="space-y-6">
           <div>
             <label className="form-label">Tagline</label>
             <input
@@ -175,7 +175,7 @@ export default function AboutAdminPage() {
             No banner photos yet — click to add
           </div>
         ) : (
-          <div className="space-y-4">
+          <div className="space-y-6">
             {bannerPhotos.map((photo, i) => (
               <div key={i} className="relative p-4 rounded-xl" style={{ background: "rgba(139,92,246,0.04)", border: "1px solid rgba(139,92,246,0.1)" }}>
                 <div className="flex items-center justify-between mb-3">

@@ -119,7 +119,7 @@ export default async function DashboardPage() {
   ];
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-12">
       {/* Header */}
       <div>
         <h1 className="text-2xl font-black text-white">Dashboard</h1>
@@ -127,34 +127,34 @@ export default async function DashboardPage() {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-6">
         {statCards.map((card) => (
-          <div key={card.label} className={`p-4 rounded-2xl bg-gradient-to-br border ${card.color} ${card.border}`}>
-            <div className={`mb-3 ${card.valueColor}`}>{card.icon}</div>
-            <div className={`text-2xl font-black ${card.valueColor}`}>{card.value}</div>
-            <div className="text-xs text-slate-500 mt-1 leading-tight">{card.label}</div>
+          <div key={card.label} className={`p-5 sm:p-6 rounded-2xl bg-gradient-to-br border shadow-sm ${card.color} ${card.border}`}>
+            <div className={`mb-4 ${card.valueColor}`}>{card.icon}</div>
+            <div className={`text-3xl font-black ${card.valueColor}`}>{card.value}</div>
+            <div className="text-sm text-slate-500 mt-1.5 font-medium leading-tight">{card.label}</div>
           </div>
         ))}
       </div>
 
       {/* Quick actions */}
       <div>
-        <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-3">Quick Actions</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">
+        <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-4">Quick Actions</h2>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {quickLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
-              className="group list-item flex items-center gap-3.5"
+              className="group list-item flex items-center gap-4"
             >
-              <div className="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:bg-purple-500/18 group-hover:border-purple-500/35 transition-all duration-200 shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:bg-purple-500/18 group-hover:border-purple-500/35 transition-all duration-300 shrink-0">
                 {link.icon}
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-slate-200 font-semibold text-sm group-hover:text-white transition-colors leading-tight">{link.label}</p>
-                <p className="text-slate-600 text-xs mt-0.5 truncate">{link.desc}</p>
+                <p className="text-slate-200 font-semibold text-sm sm:text-base group-hover:text-white transition-colors leading-tight">{link.label}</p>
+                <p className="text-slate-500 text-xs mt-1 truncate">{link.desc}</p>
               </div>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-slate-700 group-hover:text-purple-400 transition-colors shrink-0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-slate-700 group-hover:text-purple-400 transition-colors shrink-0">
                 <path d="M9 18l6-6-6-6" />
               </svg>
             </Link>
@@ -163,15 +163,15 @@ export default async function DashboardPage() {
       </div>
 
       {/* View portfolio banner */}
-      <div className="flex items-center justify-between p-5 rounded-2xl border border-purple-500/15" style={{ background: "linear-gradient(135deg, rgba(139,92,246,0.06), rgba(124,58,237,0.03))" }}>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 p-6 sm:p-8 rounded-2xl border border-purple-500/15" style={{ background: "linear-gradient(135deg, rgba(139,92,246,0.06), rgba(124,58,237,0.03))" }}>
         <div>
-          <p className="text-white font-semibold text-sm">View Live Portfolio</p>
-          <p className="text-slate-500 text-xs mt-0.5">Open your portfolio in a new tab</p>
+          <p className="text-white font-bold text-lg">View Live Portfolio</p>
+          <p className="text-slate-500 text-sm mt-1">Open your portfolio in a new tab to see your changes</p>
         </div>
-        <a href="/" target="_blank" className="btn-glow px-4 py-2 text-sm">
-          <span className="flex items-center gap-1.5">
-            Open
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
+        <a href="/" target="_blank" className="btn-glow px-6 py-3 text-sm shrink-0 w-full sm:w-auto text-center">
+          <span className="flex items-center justify-center gap-2">
+            Open Portfolio
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
               <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
               <polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" />
             </svg>

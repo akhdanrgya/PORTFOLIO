@@ -105,7 +105,7 @@ export default function CertificationsAdminPage() {
             {editId ? "Edit Certification" : "Add Certification"}
           </h2>
 
-          <div className="grid sm:grid-cols-2 gap-4 mb-4">
+          <div className="grid sm:grid-cols-2 gap-6 mb-6">
             <div className="sm:col-span-2">
               <label className="form-label">Certification Title <span>*</span></label>
               <input type="text" value={form.title ?? ""} onChange={(e) => setForm((f) => ({ ...f, title: e.target.value }))} placeholder="AWS Cloud Practitioner..." className="admin-input" />
@@ -157,9 +157,9 @@ export default function CertificationsAdminPage() {
           <p className="text-xs text-slate-600 mt-1">Click &quot;Add Certification&quot; to get started</p>
         </div>
       ) : (
-        <div className="grid sm:grid-cols-2 gap-3">
+        <div className="grid sm:grid-cols-2 gap-4 sm:gap-6">
           {certifications.map((cert) => (
-            <div key={cert.id} className="list-item flex items-center gap-4">
+            <div key={cert.id} className="list-item flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
               {/* Badge */}
               <div className="shrink-0">
                 {cert.image_url ? (
@@ -192,7 +192,7 @@ export default function CertificationsAdminPage() {
               </div>
 
               {/* Actions */}
-              <div className="flex flex-col gap-1.5 shrink-0">
+              <div className="flex sm:flex-col gap-2 shrink-0 sm:ml-auto w-full sm:w-auto mt-2 sm:mt-0">
                 <button onClick={() => startEdit(cert)} className="btn-edit">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" /><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" /></svg>
                   Edit

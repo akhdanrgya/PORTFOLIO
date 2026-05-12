@@ -93,7 +93,7 @@ export default function SkillsAdminPage() {
             Add New Skill
           </h2>
 
-          <div className="grid sm:grid-cols-2 gap-4 mb-4">
+          <div className="grid sm:grid-cols-2 gap-6 mb-6">
             <div>
               <label className="form-label">Skill Name <span>*</span></label>
               <input
@@ -164,7 +164,7 @@ export default function SkillsAdminPage() {
           <p className="text-xs text-slate-600 mt-1">Click &quot;Add Skill&quot; to get started</p>
         </div>
       ) : (
-        <div className="space-y-6">
+        <div className="space-y-10">
           {categories.length > 0 ? (
             categories.map((cat) => (
               <div key={cat}>
@@ -172,7 +172,7 @@ export default function SkillsAdminPage() {
                   <span className="tag">{cat}</span>
                   <span className="text-xs text-slate-600">{skills.filter(s => s.category === cat).length} skills</span>
                 </div>
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2.5">
+                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 sm:gap-5">
                   {skills.filter((s) => s.category === cat).map((skill) => (
                     <SkillCard key={skill.id} skill={skill} onDelete={handleDelete} />
                   ))}
@@ -180,7 +180,7 @@ export default function SkillsAdminPage() {
               </div>
             ))
           ) : (
-            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-2.5">
+            <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4 sm:gap-5">
               {skills.map((skill) => (
                 <SkillCard key={skill.id} skill={skill} onDelete={handleDelete} />
               ))}
