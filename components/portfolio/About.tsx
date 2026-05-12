@@ -40,7 +40,7 @@ export default function AboutSection({ about }: { about: About | null }) {
           {/* Bio text */}
           <AnimatedSection direction="right">
             <div className="flex flex-col gap-6 text-center lg:text-left">
-              <div className="glass-card px-8 py-8 sm:px-12 sm:py-10">
+              <div className="glass-card px-10 py-10 sm:px-14 sm:py-12">
                 <p className="text-slate-300 leading-relaxed text-lg">
                   {about?.bio ||
                     "Hello! I'm Akhdan, a Software Engineer and Fullstack Developer passionate about building digital solutions. Currently pursuing an Information Systems degree at Telkom University."}
@@ -55,7 +55,7 @@ export default function AboutSection({ about }: { about: About | null }) {
                   { label: "Role", value: "Fullstack Developer", icon: "💻" },
                   { label: "Startup", value: "Founder of GokilTech", icon: "🚀" },
                 ].map((item) => (
-                  <div key={item.label} className="glass-card px-6 py-8 flex flex-col items-center lg:items-start text-center lg:text-left">
+                  <div key={item.label} className="glass-card px-8 py-10 flex flex-col items-center lg:items-start text-center lg:text-left">
                     <span className="text-2xl mb-3 block">{item.icon}</span>
                     <p className="text-[11px] text-slate-500 uppercase tracking-widest">{item.label}</p>
                     <p className="text-sm text-slate-200 font-semibold mt-1">{item.value}</p>

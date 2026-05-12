@@ -23,14 +23,14 @@ export default function Certifications({ certifications }: { certifications: Cer
         </AnimatedSection>
 
         <AnimatedSection stagger>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {certifications.map((cert) => (
               <a
                 key={cert.id}
                 href={cert.cert_url ?? undefined}
                 target={cert.cert_url ? "_blank" : undefined}
                 rel="noopener noreferrer"
-                className={`glass-card p-5 flex gap-4 items-start ${cert.cert_url ? "cursor-pointer" : "cursor-default"}`}
+                className={`glass-card p-6 lg:p-8 flex gap-5 items-start ${cert.cert_url ? "cursor-pointer" : "cursor-default"}`}
               >
                 {/* Image/badge */}
                 <div className="shrink-0">

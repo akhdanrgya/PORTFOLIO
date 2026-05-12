@@ -26,7 +26,7 @@ export default function ExperienceSection({ experiences }: { experiences: Experi
           {/* Timeline line */}
           <div className="absolute left-8 top-0 bottom-0 w-px bg-gradient-to-b from-purple-600 via-purple-500/50 to-transparent hidden md:block" />
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             {experiences.map((exp, i) => (
               <AnimatedSection key={exp.id} delay={i * 100}>
                 <div className="flex gap-6 items-start">
@@ -36,7 +36,7 @@ export default function ExperienceSection({ experiences }: { experiences: Experi
                   </div>
 
                   {/* Card */}
-                  <div className="flex-1 glass-card p-6">
+                  <div className="flex-1 glass-card p-8 lg:p-10">
                     <div className="flex items-start gap-4">
                       {/* Company logo */}
                       <div className="shrink-0">

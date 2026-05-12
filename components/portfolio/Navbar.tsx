@@ -43,16 +43,15 @@ export default function Navbar() {
   }, []);
 
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 flex justify-center px-4 pt-4 sm:px-6 pointer-events-none">
+    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none flex justify-center">
       <nav
-        className={`w-full max-w-6xl transition-all duration-300 rounded-2xl pointer-events-auto ${
-          scrolled
-            ? "bg-[#0f0f1a]/85 backdrop-blur-xl border border-purple-500/15 shadow-lg shadow-black/20"
-            : "bg-transparent border border-transparent"
-        }`}
+        className={`w-full pointer-events-auto transition-all duration-300 flex justify-center ${scrolled
+            ? "bg-[#0f0f1a]/85 backdrop-blur-xl border-b border-purple-500/15 shadow-lg shadow-black/20"
+            : "bg-transparent border-b border-transparent"
+          }`}
       >
-        {/* Wrapper — h-16, relative so the absolute nav center is relative to the pill width */}
-        <div className="relative h-16 px-4 sm:px-6 flex items-center justify-between">
+        {/* Wrapper */}
+        <div className="relative h-20 px-6 sm:px-12 flex items-center justify-between w-full max-w-6xl">
 
           {/* ── Logo (left) ── */}
           <Link href="/" className="flex items-center gap-3 group shrink-0 z-10">
@@ -71,11 +70,10 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => setActive(link.href)}
-                className={`whitespace-nowrap px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 shrink-0 border ${
-                  active === link.href
+                className={`whitespace-nowrap px-5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 shrink-0 border ${active === link.href
                     ? "text-purple-300 bg-purple-500/10 border-purple-500/20"
                     : "text-slate-400 hover:text-slate-100 border-transparent hover:bg-white/5"
-                }`}
+                  }`}
               >
                 {link.label}
               </a>
@@ -107,9 +105,8 @@ export default function Navbar() {
 
         {/* ── Mobile / tablet dropdown ── */}
         <div
-          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out rounded-b-2xl ${
-            menuOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
-          }`}
+          className={`lg:hidden overflow-hidden transition-all duration-300 ease-in-out rounded-b-2xl ${menuOpen ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
+            }`}
         >
           <div
             className="px-4 pt-2 pb-4 space-y-1 border-t border-purple-500/15"
@@ -120,11 +117,10 @@ export default function Navbar() {
                 key={link.href}
                 href={link.href}
                 onClick={() => { setMenuOpen(false); setActive(link.href); }}
-                className={`flex items-center px-5 py-3.5 rounded-xl text-sm font-medium transition-all duration-200 ${
-                  active === link.href
+                className={`flex items-center px-6 py-4 rounded-xl text-sm font-medium transition-all duration-200 ${active === link.href
                     ? "text-purple-300 bg-purple-500/10 border border-purple-500/20"
                     : "text-slate-400 hover:text-white hover:bg-white/5"
-                }`}
+                  }`}
               >
                 {link.label}
               </a>

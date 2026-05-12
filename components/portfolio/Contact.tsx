@@ -64,39 +64,42 @@ const contacts = [
 
 export default function Contact() {
   return (
-    <section id="contact" className="w-full py-32 lg:py-40 px-6 relative overflow-hidden flex flex-col items-center">
+    <section id="contact" className="w-full py-20 px-6 relative overflow-hidden flex flex-col items-center">
+      {/* Spacer to push section down */}
+      <div className="w-full h-32 lg:h-48" aria-hidden="true" />
+      
       {/* Background glow */}
       <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[350px] rounded-full bg-purple-700/6 blur-3xl pointer-events-none" />
 
-      <div className="w-full max-w-4xl relative">
-        <AnimatedSection className="text-center mb-16">
+      <div className="w-full max-w-4xl mx-auto relative">
+        <AnimatedSection className="flex flex-col items-center text-center mb-20 w-full">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">Get In Touch</span>
-          <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">
+          <h2 className="text-4xl lg:text-5xl font-black text-white mt-4">
             Let&apos;s <span className="gradient-text">Connect</span>
           </h2>
-          <div className="section-divider mx-auto" />
-          <p className="text-slate-400 text-lg max-w-lg mx-auto">
+          <div className="section-divider my-8" />
+          <p className="text-slate-400 text-lg max-w-lg leading-relaxed text-center">
             Interested in collaborating or have a cool project in mind? Let&apos;s make something great together!
           </p>
         </AnimatedSection>
 
-        <AnimatedSection stagger>
-          <div className="grid sm:grid-cols-2 gap-4">
+        <AnimatedSection stagger className="my-12 lg:my-16">
+          <div className="grid sm:grid-cols-2 gap-6 lg:gap-8">
             {contacts.map((c) => (
               <a
                 key={c.label}
                 href={c.href}
                 target={c.href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className={`group relative flex items-center gap-4 p-5 rounded-2xl bg-gradient-to-br border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 ${c.color}`}
+                className={`group relative flex items-center gap-6 p-6 lg:p-8 rounded-2xl bg-gradient-to-br border transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10 ${c.color}`}
               >
-                <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${c.iconColor} ${c.iconBg}`}>
+                <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${c.iconColor} ${c.iconBg}`}>
                   {c.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <p className="text-xs text-slate-500 uppercase tracking-wider font-medium">{c.label}</p>
-                  <p className="text-slate-100 font-semibold text-sm mt-0.5 truncate group-hover:text-white transition-colors">{c.value}</p>
-                  <p className="text-slate-500 text-xs mt-0.5">{c.desc}</p>
+                  <p className="text-sm text-slate-500 uppercase tracking-wider font-medium">{c.label}</p>
+                  <p className="text-slate-100 font-semibold text-base mt-1.5 truncate group-hover:text-white transition-colors">{c.value}</p>
+                  <p className="text-slate-400 text-sm mt-1">{c.desc}</p>
                 </div>
                 <svg
                   viewBox="0 0 24 24"
@@ -105,7 +108,7 @@ export default function Contact() {
                   strokeWidth={2}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="w-4 h-4 text-slate-600 group-hover:text-purple-400 transition-all duration-300 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                  className="w-5 h-5 text-slate-600 group-hover:text-purple-400 transition-all duration-300 shrink-0 group-hover:translate-x-1 group-hover:-translate-y-1 ml-2"
                 >
                   <path d="M7 17L17 7M17 7H7M17 7v10" />
                 </svg>
@@ -115,10 +118,10 @@ export default function Contact() {
         </AnimatedSection>
 
         {/* CTA */}
-        <AnimatedSection className="text-center mt-12">
+        <AnimatedSection className="text-center mt-16">
           <a
             href="mailto:akhdan.anargya@gmail.com"
-            className="btn-glow px-8 py-4 text-base inline-flex items-center gap-2"
+            className="btn-glow px-8 py-4 text-base inline-flex items-center gap-3"
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4">
               <rect x="2" y="4" width="20" height="16" rx="2" />
@@ -130,7 +133,7 @@ export default function Contact() {
       </div>
 
       {/* Footer */}
-      <div className="w-full max-w-6xl px-6 mt-20 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="w-full max-w-6xl px-6 mt-32 pt-10 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
         <p className="text-slate-600 text-sm">
           © {new Date().getFullYear()} Akhdan Anargya Arisadi. Built with Next.js + Supabase.
         </p>

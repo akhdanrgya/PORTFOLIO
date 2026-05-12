@@ -54,7 +54,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
                     {cat}
                   </span>
                 </div>
-                <div className="flex flex-wrap justify-center gap-4 stagger-children animated w-full max-w-5xl">
+                <div className="flex flex-wrap justify-center gap-6 sm:gap-8 stagger-children animated w-full max-w-5xl">
                   {displaySkills
                     .filter((s) => s.category === cat)
                     .map((skill) => (
@@ -66,7 +66,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
           </div>
         ) : (
           <AnimatedSection stagger className="flex flex-col items-center">
-            <div className="flex flex-wrap justify-center gap-4 w-full max-w-5xl">
+            <div className="flex flex-wrap justify-center gap-6 sm:gap-8 w-full max-w-5xl">
               {displaySkills.map((skill) => (
                 <SkillCard key={skill.id} skill={skill} />
               ))}
@@ -80,7 +80,7 @@ export default function Skills({ skills }: { skills: Skill[] }) {
 
 function SkillCard({ skill }: { skill: Skill }) {
   return (
-    <div className="glass-card w-[105px] sm:w-[120px] p-4 flex flex-col items-center justify-center gap-3 group cursor-default">
+    <div className="glass-card w-[115px] sm:w-[130px] p-5 sm:p-6 flex flex-col items-center justify-center gap-4 group cursor-default">
       <div className="w-10 h-10 relative">
         {skill.icon_url ? (
           <Image

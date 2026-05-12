@@ -42,7 +42,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
 
         {/* Category filter */}
         {categories.length > 1 && (
-          <AnimatedSection className="flex flex-wrap gap-2 justify-center mb-8">
+          <AnimatedSection className="flex flex-wrap gap-4 justify-center mb-8">
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -61,7 +61,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
 
         {/* All projects grid */}
         <AnimatedSection stagger>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
             {filtered.length > 0 ? (
               filtered.map((project) => (
                 <ProjectCard key={project.id} project={project} />
@@ -109,7 +109,7 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
       </div>
 
       {/* Content */}
-      <div className="p-5">
+      <div className="p-6 lg:p-8">
         <h3 className="text-white font-bold text-lg mb-2 group-hover:text-purple-300 transition-colors">
           {project.title}
         </h3>
