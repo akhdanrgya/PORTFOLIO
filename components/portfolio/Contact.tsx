@@ -68,7 +68,7 @@ export default function Contact() {
   ];
 
   return (
-    <section id="contact" className="w-full py-20 px-6 relative overflow-hidden flex flex-col items-center">
+    <section id="contact" className="w-full py-20 px-4 sm:px-6 relative overflow-hidden flex flex-col items-center">
       {/* Spacer to push section down */}
       <div className="w-full h-32 lg:h-48" aria-hidden="true" />
       
@@ -95,14 +95,14 @@ export default function Contact() {
                 href={c.href}
                 target={c.href.startsWith("mailto") ? undefined : "_blank"}
                 rel="noopener noreferrer"
-                className={`group relative flex items-center gap-6 p-6 lg:p-8 rounded-2xl bg-gradient-to-br border transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10 ${c.color}`}
+                className={`group relative flex items-center gap-4 sm:gap-6 p-4 sm:p-6 lg:p-8 rounded-2xl bg-gradient-to-br border transition-all duration-300 hover:-translate-y-2 hover:shadow-xl hover:shadow-purple-500/10 ${c.color}`}
               >
-                <div className={`w-14 h-14 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${c.iconColor} ${c.iconBg}`}>
+                <div className={`w-11 h-11 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center transition-all duration-300 shrink-0 ${c.iconColor} ${c.iconBg}`}>
                   {c.icon}
                 </div>
                 <div className="flex-1 min-w-0">
                   <p className="text-sm text-slate-500 uppercase tracking-wider font-medium">{c.label}</p>
-                  <p className="text-slate-100 font-semibold text-base mt-1.5 truncate group-hover:text-white transition-colors">{c.value}</p>
+                  <p className="text-slate-100 font-semibold text-sm sm:text-base mt-1.5 truncate group-hover:text-white transition-colors">{c.value}</p>
                   <p className="text-slate-400 text-sm mt-1">{c.desc}</p>
                 </div>
                 <svg
@@ -112,7 +112,7 @@ export default function Contact() {
                   strokeWidth={2}
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="w-5 h-5 text-slate-600 group-hover:text-purple-400 transition-all duration-300 shrink-0 group-hover:translate-x-1 group-hover:-translate-y-1 ml-2"
+                  className="w-5 h-5 text-slate-600 group-hover:text-purple-400 transition-all duration-300 shrink-0 group-hover:translate-x-1 group-hover:-translate-y-1 ml-2 hidden sm:block"
                 >
                   <path d="M7 17L17 7M17 7H7M17 7v10" />
                 </svg>
