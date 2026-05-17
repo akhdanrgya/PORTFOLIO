@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
+import { useRouter } from "next/navigation";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import type { Project } from "@/lib/supabase";
 import { useLanguage } from "@/lib/LanguageContext";
@@ -84,8 +84,13 @@ export default function Projects({ projects }: { projects: Project[] }) {
 
 function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
   const { t } = useLanguage();
+  const router = useRouter();
+
   return (
-    <Link href={`/projects/${project.id}`} className={`glass-card overflow-hidden group block ${featured ? "md:col-span-1" : ""}`}>
+    <div
+      onClick={() => router.push(`/projects/${project.id}`)}
+      className={`glass-card overflow-hidden group block cursor-pointer ${featured ? "md:col-span-1" : ""}`}
+    >
       {/* Thumbnail */}
       <div className={`relative overflow-hidden ${featured ? "aspect-video" : "aspect-video"}`}>
         {project.thumbnail_url ? (
@@ -145,6 +150,7 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
               href={project.live_url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="btn-glow px-4 py-2 text-xs flex-1 text-center"
             >
               <span>{t("projects.liveDemo")}</span>
@@ -155,6 +161,7 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
               href={project.github_url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={(e) => e.stopPropagation()}
               className="btn-outline px-4 py-2 text-xs flex-1 text-center"
             >
               GitHub
@@ -162,6 +169,6 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
           )}
         </div>
       </div>
-    </Link>
+    </div>
   );
 }

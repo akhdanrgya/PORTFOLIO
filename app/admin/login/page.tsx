@@ -39,11 +39,8 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-sm animate-fade-in">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-600 to-violet-500 flex items-center justify-center text-white font-black text-lg mx-auto mb-4 shadow-lg shadow-purple-900/40">
-            AA
-          </div>
           <h1 className="text-2xl font-black text-white">Admin Panel</h1>
-          <p className="text-slate-500 text-sm mt-1">Portfolio CMS · Akhdan Anargya</p>
+          <p className="text-slate-500 text-sm mt-1">Portfolio Content Management System · Akhdan Anargya</p>
         </div>
 
         {/* Form */}
