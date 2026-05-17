@@ -3,13 +3,15 @@ import { useState } from "react";
 import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import type { Project } from "@/lib/supabase";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Projects({ projects }: { projects: Project[] }) {
-  const categories = ["All", ...new Set(projects.map((p) => p.category).filter(Boolean))] as string[];
-  const [activeCategory, setActiveCategory] = useState("All");
+  const { t } = useLanguage();
+  const categories = [t("projects.all"), ...new Set(projects.map((p) => p.category).filter(Boolean))] as string[];
+  const [activeCategory, setActiveCategory] = useState(t("projects.all"));
 
   const filtered =
-    activeCategory === "All"
+    activeCategory === t("projects.all")
       ? projects
       : projects.filter((p) => p.category === activeCategory);
 
@@ -19,9 +21,9 @@ export default function Projects({ projects }: { projects: Project[] }) {
     <section id="projects" className="w-full py-32 lg:py-40 px-4 sm:px-6 lg:px-8 flex justify-center">
       <div className="w-full max-w-6xl">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">Portfolio</span>
+          <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">{t("projects.subtitle")}</span>
           <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">
-            Latest <span className="gradient-text">Projects</span>
+            {t("projects.title1")}<span className="gradient-text">{t("projects.title2")}</span>
           </h2>
           <div className="section-divider mx-auto" />
         </AnimatedSection>
@@ -30,7 +32,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
         {featured.length > 0 && (
           <AnimatedSection className="mb-12">
             <h3 className="text-lg font-bold text-slate-300 mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-yellow-400" /> Featured
+              <span className="w-2 h-2 rounded-full bg-yellow-400" /> {t("projects.featured")}
             </h3>
             <div className="grid md:grid-cols-2 gap-6">
               {featured.slice(0, 2).map((project) => (
@@ -69,7 +71,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
             ) : (
               <div className="col-span-3 text-center py-16">
                 <div className="text-5xl mb-4">◈</div>
-                <p className="text-slate-500">No projects yet — add some from the admin panel!</p>
+                <p className="text-slate-500">{t("projects.noProjects")}</p>
               </div>
             )}
           </div>
@@ -80,6 +82,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
 }
 
 function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
+  const { t } = useLanguage();
   return (
     <div className={`glass-card overflow-hidden group ${featured ? "md:col-span-1" : ""}`}>
       {/* Thumbnail */}
@@ -143,7 +146,7 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
               rel="noopener noreferrer"
               className="btn-glow px-4 py-2 text-xs flex-1 text-center"
             >
-              <span>Live Demo ↗</span>
+              <span>{t("projects.liveDemo")}</span>
             </a>
           )}
           {project.github_url && (

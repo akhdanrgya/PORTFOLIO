@@ -1,23 +1,27 @@
+"use client";
 import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import type { Certification } from "@/lib/supabase";
-
-function formatDate(dateStr: string | null) {
-  if (!dateStr) return null;
-  const d = new Date(dateStr);
-  return d.toLocaleDateString("en-US", { month: "long", year: "numeric" });
-}
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Certifications({ certifications }: { certifications: Certification[] }) {
+  const { locale, t } = useLanguage();
+
+  function formatDate(dateStr: string | null) {
+    if (!dateStr) return null;
+    const d = new Date(dateStr);
+    return d.toLocaleDateString(locale === "id" ? "id-ID" : "en-US", { month: "long", year: "numeric" });
+  }
+
   if (certifications.length === 0) return null;
 
   return (
     <section id="certifications" className="w-full py-32 lg:py-40 px-4 sm:px-6 lg:px-8 flex justify-center">
       <div className="w-full max-w-6xl">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">Achievements</span>
+          <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">{t("certifications.subtitle")}</span>
           <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">
-            Certifications & <span className="gradient-text">Achievements</span>
+            {t("certifications.title1")}<span className="gradient-text">{t("certifications.title2")}</span>
           </h2>
           <div className="section-divider mx-auto" />
         </AnimatedSection>
@@ -53,7 +57,7 @@ export default function Certifications({ certifications }: { certifications: Cer
                   )}
                   {cert.cert_url && (
                     <span className="text-xs text-purple-400 mt-2 inline-block hover:text-purple-300">
-                      View Certificate ↗
+                      {t("certifications.view")}
                     </span>
                   )}
                 </div>

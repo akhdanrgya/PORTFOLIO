@@ -1,20 +1,23 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useLanguage } from "@/lib/LanguageContext";
+import type { TranslationKey } from "@/lib/translations";
 
-const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#contact", label: "Contact" },
+const navLinks: { href: string; labelKey: TranslationKey }[] = [
+  { href: "#about", labelKey: "nav.about" },
+  { href: "#skills", labelKey: "nav.skills" },
+  { href: "#projects", labelKey: "nav.projects" },
+  { href: "#experience", labelKey: "nav.experience" },
+  { href: "#certifications", labelKey: "nav.certifications" },
+  { href: "#contact", labelKey: "nav.contact" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [active, setActive] = useState("");
+  const { locale, toggleLocale, t } = useLanguage();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -75,19 +78,38 @@ export default function Navbar() {
                     : "text-slate-400 hover:text-slate-100 border-transparent hover:bg-white/5"
                   }`}
               >
-                {link.label}
+                {t(link.labelKey)}
               </a>
             ))}
           </div>
 
-          {/* ── Right side (CTA + hamburger) ── */}
+          {/* ── Right side (Lang toggle + CTA + hamburger) ── */}
           <div className="flex items-center gap-3 shrink-0 z-10">
+            {/* Language toggle */}
+            <button
+              onClick={toggleLocale}
+              className="relative w-[72px] h-9 rounded-xl border border-purple-500/20 bg-white/[0.03] hover:bg-purple-500/10 hover:border-purple-500/30 transition-all duration-300 flex items-center px-1 cursor-pointer group"
+              aria-label={`Switch to ${locale === "en" ? "Indonesian" : "English"}`}
+            >
+              <div
+                className={`absolute w-[32px] h-7 rounded-lg bg-gradient-to-br from-purple-600/80 to-violet-500/80 shadow-md transition-all duration-300 ease-in-out ${
+                  locale === "id" ? "translate-x-[34px]" : "translate-x-0"
+                }`}
+              />
+              <span className={`relative z-10 w-[32px] text-center text-xs font-bold transition-colors duration-300 ${locale === "en" ? "text-white" : "text-slate-500 group-hover:text-slate-400"}`}>
+                EN
+              </span>
+              <span className={`relative z-10 w-[32px] text-center text-xs font-bold transition-colors duration-300 ${locale === "id" ? "text-white" : "text-slate-500 group-hover:text-slate-400"}`}>
+                ID
+              </span>
+            </button>
+
             {/* Hire Me — desktop only */}
             <a
               href="mailto:akhdan.anargya@gmail.com"
               className="hidden lg:inline-flex btn-glow text-sm rounded-xl shrink-0"
             >
-              <span>Hire Me</span>
+              <span>{t("nav.hireMe")}</span>
             </a>
 
             {/* Hamburger — mobile/tablet */}
@@ -122,7 +144,7 @@ export default function Navbar() {
                     : "text-slate-400 hover:text-white hover:bg-white/5"
                   }`}
               >
-                {link.label}
+                {t(link.labelKey)}
               </a>
             ))}
             <div className="pt-2 pb-1">
@@ -131,7 +153,7 @@ export default function Navbar() {
                 onClick={() => setMenuOpen(false)}
                 className="btn-glow w-full text-sm rounded-xl shrink-0"
               >
-                <span>Hire Me ✉</span>
+                <span>{t("nav.hireMe")} ✉</span>
               </a>
             </div>
           </div>

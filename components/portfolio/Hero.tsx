@@ -2,19 +2,23 @@
 import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import type { About } from "@/lib/supabase";
-
-const roles = [
-  "Software Engineer",
-  "Fullstack Developer",
-  "Founder of GokilTech",
-  "Information Systems @ Telkom University",
-];
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Hero({ about }: { about: About | null }) {
+  const { t } = useLanguage();
+  const roles = [t("hero.role.0"), t("hero.role.1"), t("hero.role.2"), t("hero.role.3")];
+
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [deleting, setDeleting] = useState(false);
   const timeoutRef = useRef<ReturnType<typeof setTimeout>>(null);
+
+  // Reset typewriter when language changes
+  useEffect(() => {
+    setDisplayed("");
+    setDeleting(false);
+    setRoleIndex(0);
+  }, [t]);
 
   useEffect(() => {
     const current = roles[roleIndex];
@@ -31,7 +35,7 @@ export default function Hero({ about }: { about: About | null }) {
     }
 
     return () => { if (timeoutRef.current) clearTimeout(timeoutRef.current); };
-  }, [displayed, deleting, roleIndex]);
+  }, [displayed, deleting, roleIndex, roles]);
 
   const banners = about?.banner_photos?.filter(Boolean) ?? [];
   const profilePhoto = about?.profile_photo_url;
@@ -68,7 +72,7 @@ export default function Hero({ about }: { about: About | null }) {
           <div className="animate-on-scroll animated" style={{ animationDelay: "0ms" }}>
             <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/30 text-purple-300 text-sm font-medium mb-6">
               <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              Available for Work
+              {t("hero.available")}
             </span>
           </div>
 
@@ -86,12 +90,12 @@ export default function Hero({ about }: { about: About | null }) {
           </div>
 
           <p className="text-slate-400 text-lg max-w-lg mx-auto lg:mx-0 leading-relaxed mb-10 animate-on-scroll animated" style={{ animationDelay: "300ms" }}>
-            {about?.tagline || "Building impactful digital solutions. Founder of GokilTech, Information Systems at Telkom University."}
+            {about?.tagline || t("hero.tagline")}
           </p>
 
           <div className="flex flex-wrap gap-3 justify-center lg:justify-start animate-on-scroll animated" style={{ animationDelay: "400ms" }}>
             <a href="#projects" className="btn-glow text-sm shrink-0">
-              <span>View Projects →</span>
+              <span>{t("hero.viewProjects")}</span>
             </a>
             <a href="https://github.com/akhdanrgya" target="_blank" rel="noopener noreferrer" className="btn-outline text-sm shrink-0 flex items-center gap-2">
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4">
@@ -107,9 +111,9 @@ export default function Hero({ about }: { about: About | null }) {
           {/* Stats */}
           <div className="flex items-center gap-6 justify-center lg:justify-start mt-10 animate-on-scroll animated" style={{ animationDelay: "500ms" }}>
             {[
-              { label: "Projects", value: "10+" },
-              { label: "Technologies", value: "15+" },
-              { label: "Years Coding", value: "3+" },
+              { label: t("hero.projects"), value: "10+" },
+              { label: t("hero.technologies"), value: "15+" },
+              { label: t("hero.yearsCoding"), value: "3+" },
             ].map((s, i) => (
               <div key={s.label} className="flex items-center gap-6">
                 <div className="text-center lg:text-left">

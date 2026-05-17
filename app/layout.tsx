@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import ToastContainer from "@/components/ui/Toast";
+import { LanguageProvider } from "@/lib/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Akhdan Anargya Arisadi — Fullstack Developer & Founder of GokilTech",
@@ -19,8 +20,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <body className="bg-[#0a0a0f] text-slate-100 antialiased" suppressHydrationWarning>
-        {children}
-        <ToastContainer />
+        <LanguageProvider>
+          {children}
+          <ToastContainer />
+        </LanguageProvider>
       </body>
     </html>
   );

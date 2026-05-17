@@ -1,23 +1,27 @@
+"use client";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import Image from "next/image";
 import type { Experience } from "@/lib/supabase";
-
-function formatDate(dateStr: string | null) {
-  if (!dateStr) return "Present";
-  const d = new Date(dateStr);
-  return d.toLocaleDateString("en-US", { month: "short", year: "numeric" });
-}
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function ExperienceSection({ experiences }: { experiences: Experience[] }) {
+  const { locale, t } = useLanguage();
+
+  function formatDate(dateStr: string | null) {
+    if (!dateStr) return t("experience.present");
+    const d = new Date(dateStr);
+    return d.toLocaleDateString(locale === "id" ? "id-ID" : "en-US", { month: "short", year: "numeric" });
+  }
+
   if (experiences.length === 0) return null;
 
   return (
     <section id="experience" className="w-full py-32 lg:py-40 px-4 sm:px-6 lg:px-8 flex justify-center">
       <div className="w-full max-w-4xl">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">Career</span>
+          <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">{t("experience.subtitle")}</span>
           <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">
-            Work <span className="gradient-text">Experience</span>
+            {t("experience.title1")}<span className="gradient-text">{t("experience.title2")}</span>
           </h2>
           <div className="section-divider mx-auto" />
         </AnimatedSection>

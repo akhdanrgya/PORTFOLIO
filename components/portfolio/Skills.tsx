@@ -1,6 +1,8 @@
+"use client";
 import Image from "next/image";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import type { Skill } from "@/lib/supabase";
+import { useLanguage } from "@/lib/LanguageContext";
 
 const defaultSkills: Skill[] = [
   // Languages
@@ -59,6 +61,7 @@ const categoryColors: Record<string, string> = {
 };
 
 export default function Skills({ skills }: { skills: Skill[] }) {
+  const { t } = useLanguage();
   const displaySkills = skills.length > 0 ? skills : defaultSkills;
   const categories = [...new Set(displaySkills.map((s) => s.category).filter(Boolean))] as string[];
 
@@ -69,9 +72,9 @@ export default function Skills({ skills }: { skills: Skill[] }) {
 
       <div className="w-full max-w-6xl relative">
         <AnimatedSection className="text-center mb-16">
-          <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">Tech Stack</span>
+          <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">{t("skills.subtitle")}</span>
           <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">
-            Skills & <span className="gradient-text">Technologies</span>
+            {t("skills.title1")}<span className="gradient-text">{t("skills.title2")}</span>
           </h2>
           <div className="section-divider mx-auto" />
         </AnimatedSection>

@@ -1,12 +1,15 @@
+"use client";
 import Link from "next/link";
+import { useLanguage } from "@/lib/LanguageContext";
+import type { TranslationKey } from "@/lib/translations";
 
-const navLinks = [
-  { href: "#about", label: "About" },
-  { href: "#skills", label: "Skills" },
-  { href: "#projects", label: "Projects" },
-  { href: "#experience", label: "Experience" },
-  { href: "#certifications", label: "Certifications" },
-  { href: "#contact", label: "Contact" },
+const navLinks: { href: string; labelKey: TranslationKey }[] = [
+  { href: "#about", labelKey: "nav.about" },
+  { href: "#skills", labelKey: "nav.skills" },
+  { href: "#projects", labelKey: "nav.projects" },
+  { href: "#experience", labelKey: "nav.experience" },
+  { href: "#certifications", labelKey: "nav.certifications" },
+  { href: "#contact", labelKey: "nav.contact" },
 ];
 
 const socialLinks = [
@@ -50,6 +53,7 @@ const socialLinks = [
 ];
 
 export default function Footer() {
+  const { t } = useLanguage();
   return (
     <footer className="relative w-full overflow-hidden">
       {/* Top gradient divider */}
@@ -73,9 +77,7 @@ export default function Footer() {
             </Link>
 
             <p className="text-slate-400 text-sm leading-relaxed max-w-sm">
-              Software Engineer & Fullstack Developer. Building impactful digital
-              solutions from Jakarta, Indonesia. Currently studying Information
-              Systems at Telkom University.
+              {t("footer.bio")}
             </p>
 
             {/* Social icons */}
@@ -98,7 +100,7 @@ export default function Footer() {
           {/* Quick links */}
           <div className="md:col-span-3">
             <h4 className="text-white font-semibold text-sm uppercase tracking-widest mb-6">
-              Navigation
+              {t("footer.navigation")}
             </h4>
             <ul className="flex flex-col gap-3">
               {navLinks.map((link) => (
@@ -108,7 +110,7 @@ export default function Footer() {
                     className="text-slate-400 text-sm hover:text-purple-400 transition-colors duration-200 flex items-center gap-2 group"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-purple-500/30 group-hover:bg-purple-400 transition-colors duration-200" />
-                    {link.label}
+                    {t(link.labelKey)}
                   </a>
                 </li>
               ))}
@@ -118,7 +120,7 @@ export default function Footer() {
           {/* Get in touch */}
           <div className="md:col-span-4">
             <h4 className="text-white font-semibold text-sm uppercase tracking-widest mb-6">
-              Get In Touch
+              {t("footer.getInTouch")}
             </h4>
             <div className="flex flex-col gap-4">
               <a
@@ -147,7 +149,7 @@ export default function Footer() {
                     <path d="M2 12l10 5 10-5" />
                   </svg>
                 </div>
-                GokilTech — My Startup
+                {t("footer.myStartup")}
               </a>
 
               <div className="text-slate-400 text-sm flex items-center gap-3">
@@ -167,7 +169,7 @@ export default function Footer() {
                 href="mailto:akhdan.anargya@gmail.com"
                 className="btn-glow text-xs px-5 py-2.5 rounded-xl"
               >
-                <span>Let&apos;s Work Together →</span>
+                <span>{t("footer.cta")}</span>
               </a>
             </div>
           </div>
@@ -176,15 +178,15 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/5 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-slate-600 text-xs">
-            © {new Date().getFullYear()} Akhdan Anargya Arisadi. All rights reserved.
+            © {new Date().getFullYear()} Akhdan Anargya Arisadi. {t("footer.rights")}
           </p>
           <p className="text-slate-600 text-xs flex items-center gap-1.5">
-            Built with
+            {t("footer.builtWithPrefix")}
             <span className="inline-flex items-center gap-1 text-slate-500">
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3 text-purple-500/60">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
               </svg>
-              using Next.js & Supabase
+              {t("footer.builtWith")}
             </span>
           </p>
         </div>
