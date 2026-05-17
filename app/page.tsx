@@ -7,6 +7,7 @@ import Projects from "@/components/portfolio/Projects";
 import ExperienceSection from "@/components/portfolio/Experience";
 import Certifications from "@/components/portfolio/Certifications";
 import Contact from "@/components/portfolio/Contact";
+import Footer from "@/components/portfolio/Footer";
 import type { About, Skill, Project, Experience, Certification } from "@/lib/supabase";
 
 async function getData() {
@@ -33,15 +34,18 @@ export default async function HomePage() {
   const { about, skills, projects, experiences, certifications } = await getData();
 
   return (
-    <main className="flex flex-col gap-24 lg:gap-32 overflow-hidden pb-24">
-      <Navbar />
-      <Hero about={about} />
-      <AboutSection about={about} />
-      <Skills skills={skills} />
-      <Projects projects={projects} />
-      <ExperienceSection experiences={experiences} />
-      <Certifications certifications={certifications} />
-      <Contact />
-    </main>
+    <>
+      <main className="flex flex-col gap-24 lg:gap-32 overflow-hidden">
+        <Navbar />
+        <Hero about={about} />
+        <AboutSection about={about} />
+        <Skills skills={skills} />
+        <Projects projects={projects} />
+        <ExperienceSection experiences={experiences} />
+        <Certifications certifications={certifications} />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   );
 }

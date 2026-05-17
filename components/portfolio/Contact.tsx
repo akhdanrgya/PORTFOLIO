@@ -131,19 +131,6 @@ export default function Contact() {
           </a>
         </AnimatedSection>
       </div>
-
-      {/* Footer */}
-      <div className="w-full max-w-6xl px-6 mt-32 pt-10 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-6">
-        <p className="text-slate-600 text-sm">
-          © {new Date().getFullYear()} Akhdan Anargya Arisadi. Built with Next.js + Supabase.
-        </p>
-        <p className="text-slate-600 text-sm">
-          Founder of{" "}
-          <a href="https://gokiltech.com" className="text-purple-500/80 hover:text-purple-400 transition-colors">
-            GokilTech
-          </a>
-        </p>
-      </div>
     </section>
   );
 }
