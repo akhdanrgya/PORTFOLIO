@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import type { Project } from "@/lib/supabase";
 import { useLanguage } from "@/lib/LanguageContext";
@@ -84,7 +85,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
 function ProjectCard({ project, featured = false }: { project: Project; featured?: boolean }) {
   const { t } = useLanguage();
   return (
-    <div className={`glass-card overflow-hidden group ${featured ? "md:col-span-1" : ""}`}>
+    <Link href={`/projects/${project.id}`} className={`glass-card overflow-hidden group block ${featured ? "md:col-span-1" : ""}`}>
       {/* Thumbnail */}
       <div className={`relative overflow-hidden ${featured ? "aspect-video" : "aspect-video"}`}>
         {project.thumbnail_url ? (
@@ -161,6 +162,6 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
           )}
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

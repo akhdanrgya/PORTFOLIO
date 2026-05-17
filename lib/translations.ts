@@ -53,6 +53,15 @@ export const translations = {
   "projects.all": { en: "All", id: "Semua" },
   "projects.liveDemo": { en: "Live Demo ↗", id: "Live Demo ↗" },
   "projects.noProjects": { en: "No projects yet — add some from the admin panel!", id: "Belum ada proyek — tambahkan dari panel admin!" },
+  "projects.backToProjects": { en: "← Back to Projects", id: "← Kembali ke Proyek" },
+  "projects.techStack": { en: "Tech Stack", id: "Teknologi" },
+  "projects.links": { en: "Links", id: "Tautan" },
+  "projects.viewLive": { en: "View Live Site", id: "Lihat Situs" },
+  "projects.viewSource": { en: "View Source Code", id: "Lihat Kode Sumber" },
+  "projects.aboutProject": { en: "About This Project", id: "Tentang Proyek Ini" },
+  "projects.notFound": { en: "Project not found", id: "Proyek tidak ditemukan" },
+  "projects.notFoundDesc": { en: "The project you're looking for doesn't exist or has been removed.", id: "Proyek yang Anda cari tidak ada atau telah dihapus." },
+  "projects.backHome": { en: "Back to Home", id: "Kembali ke Beranda" },
 
   // ── Experience ──
   "experience.subtitle": { en: "Career", id: "Karir" },
