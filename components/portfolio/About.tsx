@@ -26,7 +26,7 @@ export default function AboutSection({ about }: { about: About | null }) {
                   }`}
                 >
                   {photo ? (
-                    <Image src={photo} alt={`Photo ${i + 1}`} fill className="object-cover" />
+                    <Image src={photo} alt={`Photo ${i + 1}`} fill sizes="(max-width: 768px) 100vw, 50vw" className="object-cover" />
                   ) : (
                     <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-dark-300 flex items-center justify-center">
                       <span className="text-purple-500/40 text-4xl">◈</span>

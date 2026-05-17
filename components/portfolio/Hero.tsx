@@ -48,6 +48,7 @@ export default function Hero({ about }: { about: About | null }) {
             src={banners[0]}
             alt="Banner"
             fill
+            sizes="100vw"
             className="object-cover opacity-10"
             priority
           />
@@ -129,7 +130,7 @@ export default function Hero({ about }: { about: About | null }) {
             <div className="absolute inset-2 rounded-full border-2 border-purple-500/40" />
             <div className="absolute inset-0 rounded-full overflow-hidden border-4 border-purple-600/50 shadow-purple-lg">
               {profilePhoto ? (
-                <Image src={profilePhoto} alt="Akhdan Anargya" fill className="object-cover" priority />
+                <Image src={profilePhoto} alt="Akhdan Anargya" fill sizes="(max-width: 1024px) 288px, 384px" className="object-cover" priority />
               ) : (
                 <div className="w-full h-full bg-gradient-to-br from-purple-900/50 to-dark-300 flex items-center justify-center">
                   <span className="text-6xl font-black gradient-text">AA</span>
