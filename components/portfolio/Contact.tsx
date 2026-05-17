@@ -78,7 +78,7 @@ export default function Contact() {
       <div className="w-full max-w-4xl mx-auto relative">
         <AnimatedSection className="flex flex-col items-center text-center mb-20 w-full">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">{t("contact.subtitle")}</span>
-          <h2 className="text-4xl lg:text-5xl font-black text-white mt-4">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-4">
             {t("contact.title1")}<span className="gradient-text">{t("contact.title2")}</span>
           </h2>
           <div className="section-divider my-8" />

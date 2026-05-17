@@ -39,6 +39,10 @@
   --shadow-glow: 0 0 20px rgba(168, 85, 247, 0.5);
 }
 
+/* Hire Me button visibility — avoids specificity conflict with .btn-glow */
+:root { --hire-display: none; }
+@media (min-width: 1024px) { :root { --hire-display: inline-flex; } }
+
 /* ─── Keyframes ─────────────────────────────────────────── */
 @keyframes fadeUp {
   0% { opacity: 0; transform: translateY(30px); }

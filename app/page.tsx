@@ -35,7 +35,7 @@ export default async function HomePage() {
 
   return (
     <>
-      <main className="flex flex-col gap-24 lg:gap-32 overflow-hidden">
+      <main className="flex flex-col gap-8 sm:gap-16 lg:gap-32 overflow-hidden">
         <Navbar />
         <Hero about={about} />
         <AboutSection about={about} />

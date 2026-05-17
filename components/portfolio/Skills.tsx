@@ -66,14 +66,14 @@ export default function Skills({ skills }: { skills: Skill[] }) {
   const categories = [...new Set(displaySkills.map((s) => s.category).filter(Boolean))] as string[];
 
   return (
-    <section id="skills" className="w-full py-32 lg:py-40 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex justify-center">
+    <section id="skills" className="w-full py-16 sm:py-24 lg:py-40 px-4 sm:px-6 lg:px-8 relative overflow-hidden flex justify-center">
       {/* Background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-purple-700/5 blur-3xl pointer-events-none" />
 
       <div className="w-full max-w-6xl relative">
         <AnimatedSection className="text-center mb-16">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">{t("skills.subtitle")}</span>
-          <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-2">
             {t("skills.title1")}<span className="gradient-text">{t("skills.title2")}</span>
           </h2>
           <div className="section-divider mx-auto" />

@@ -76,7 +76,7 @@ export default function Hero({ about }: { about: About | null }) {
             </span>
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-black text-white mb-4 leading-tight animate-on-scroll animated" style={{ animationDelay: "100ms" }}>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white mb-4 leading-tight animate-on-scroll animated" style={{ animationDelay: "100ms" }}>
             Akhdan
             <br />
             <span className="gradient-text">Anargya</span>

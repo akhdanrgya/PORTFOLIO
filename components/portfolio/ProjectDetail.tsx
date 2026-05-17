@@ -80,7 +80,7 @@ export default function ProjectDetail({ project }: { project: Project | null }) 
               </span>
             )}
           </div>
-          <h1 className="text-4xl lg:text-5xl font-black text-white leading-tight">
+          <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight">
             {project.title}
           </h1>
         </div>

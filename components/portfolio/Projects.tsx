@@ -19,11 +19,11 @@ export default function Projects({ projects }: { projects: Project[] }) {
   const featured = projects.filter((p) => p.featured);
 
   return (
-    <section id="projects" className="w-full py-32 lg:py-40 px-4 sm:px-6 lg:px-8 flex justify-center">
+    <section id="projects" className="w-full py-16 sm:py-24 lg:py-40 px-4 sm:px-6 lg:px-8 flex justify-center">
       <div className="w-full max-w-6xl">
         <AnimatedSection className="text-center mb-16">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">{t("projects.subtitle")}</span>
-          <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-2">
             {t("projects.title1")}<span className="gradient-text">{t("projects.title2")}</span>
           </h2>
           <div className="section-divider mx-auto" />

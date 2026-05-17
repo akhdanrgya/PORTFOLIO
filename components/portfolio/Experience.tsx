@@ -16,11 +16,11 @@ export default function ExperienceSection({ experiences }: { experiences: Experi
   if (experiences.length === 0) return null;
 
   return (
-    <section id="experience" className="w-full py-32 lg:py-40 px-4 sm:px-6 lg:px-8 flex justify-center">
+    <section id="experience" className="w-full py-16 sm:py-24 lg:py-40 px-4 sm:px-6 lg:px-8 flex justify-center">
       <div className="w-full max-w-4xl">
         <AnimatedSection className="text-center mb-16">
           <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">{t("experience.subtitle")}</span>
-          <h2 className="text-4xl lg:text-5xl font-black text-white mt-2">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-2">
             {t("experience.title1")}<span className="gradient-text">{t("experience.title2")}</span>
           </h2>
           <div className="section-divider mx-auto" />
