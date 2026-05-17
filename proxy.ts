@@ -18,12 +18,23 @@ function verifySessionToken(token: string): boolean {
 
 export default function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
+  const token = request.cookies.get(SESSION_COOKIE)?.value;
+  const isAuthenticated = token ? verifySessionToken(token) : false;
+
+  // /admin exact path → redirect based on auth status
+  if (pathname === "/admin") {
+    const dest = isAuthenticated ? "/admin/dashboard" : "/admin/login";
+    return NextResponse.redirect(new URL(dest, request.url));
+  }
+
+  // Already logged in but visiting /admin/login → send to dashboard
+  if (pathname === "/admin/login" && isAuthenticated) {
+    return NextResponse.redirect(new URL("/admin/dashboard", request.url));
+  }
 
   // Protect all /admin/* routes except /admin/login
   if (pathname.startsWith("/admin") && pathname !== "/admin/login") {
-    const token = request.cookies.get(SESSION_COOKIE)?.value;
-
-    if (!token || !verifySessionToken(token)) {
+    if (!isAuthenticated) {
       return NextResponse.redirect(new URL("/admin/login", request.url));
     }
   }
@@ -32,5 +43,5 @@ export default function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/admin/:path*"],
+  matcher: ["/admin/:path*", "/admin"],
 };
