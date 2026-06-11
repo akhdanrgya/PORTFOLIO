@@ -67,6 +67,23 @@ export default function AboutSection({ about }: { about: About | null }) {
           </div>
         </AnimatedSection>
       </div>
+
+      {/* Gallery (No Title) */}
+      {about?.banner_photos && about.banner_photos.length > 0 && (
+        <AnimatedSection direction="up" className="mt-16">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+            {about.banner_photos.map((photo, i) => (
+              <div key={i} className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 group">
+                <img 
+                  src={photo} 
+                  alt={`Gallery photo ${i + 1}`} 
+                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              </div>
+            ))}
+          </div>
+        </AnimatedSection>
+      )}
     </section>
   );
 }
