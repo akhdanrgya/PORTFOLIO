@@ -1,10 +1,12 @@
 "use client";
+import { useState } from "react";
 import AnimatedSection from "@/components/ui/AnimatedSection";
 import type { About } from "@/lib/supabase";
 import { useLanguage } from "@/lib/LanguageContext";
 
 export default function AboutSection({ about }: { about: About | null }) {
   const { t } = useLanguage();
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   return (
     <section id="about" className="max-w-7xl mx-auto px-4 sm:px-8 py-32">
@@ -73,7 +75,11 @@ export default function AboutSection({ about }: { about: About | null }) {
         <AnimatedSection direction="up" className="mt-16">
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
             {about.banner_photos.map((photo, i) => (
-              <div key={i} className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 group">
+              <div 
+                key={i} 
+                className="relative aspect-video rounded-2xl overflow-hidden border border-white/5 group cursor-pointer"
+                onClick={() => setSelectedImage(photo)}
+              >
                 <img 
                   src={photo} 
                   alt={`Gallery photo ${i + 1}`} 
@@ -83,6 +89,36 @@ export default function AboutSection({ about }: { about: About | null }) {
             ))}
           </div>
         </AnimatedSection>
+      )}
+
+      {/* Lightbox Popup */}
+      {selectedImage && (
+        <div 
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4 animate-fade-in"
+          onClick={() => setSelectedImage(null)}
+        >
+          <button 
+            className="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-white/20 p-2 rounded-full backdrop-blur-md transition-all"
+            onClick={(e) => {
+              e.stopPropagation();
+              setSelectedImage(null);
+            }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
+              <path d="M18 6L6 18M6 6l12 12" />
+            </svg>
+          </button>
+          <div 
+            className="relative flex items-center justify-center max-w-[95vw] max-h-[95vh]"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img 
+              src={selectedImage} 
+              alt="Expanded gallery photo" 
+              className="max-w-full max-h-[90vh] object-contain rounded-lg shadow-2xl"
+            />
+          </div>
+        </div>
       )}
     </section>
   );
