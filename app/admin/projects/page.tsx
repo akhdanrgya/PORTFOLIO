@@ -10,8 +10,8 @@ export default function ProjectsAdminPage() {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
-  const [form, setForm] = useState<Partial<Project> & { tech_stack: string[] }>({
-    title: "", description: "", tech_stack: [], live_url: "", github_url: "", thumbnail_url: "", category: "", featured: false,
+  const [form, setForm] = useState<Partial<Project> & { tech_stack: string[], key_features: { title: string, description: string }[] }>({
+    title: "", description: "", tech_stack: [], live_url: "", github_url: "", thumbnail_url: "", category: "", featured: false, challenge: "", solution: "", key_features: [],
   });
   const [saving, setSaving] = useState(false);
   const [editId, setEditId] = useState<string | null>(null);
@@ -25,13 +25,13 @@ export default function ProjectsAdminPage() {
   useEffect(() => { fetchProjects(); }, []);
 
   const resetForm = () => {
-    setForm({ title: "", description: "", tech_stack: [], live_url: "", github_url: "", thumbnail_url: "", category: "", featured: false });
+    setForm({ title: "", description: "", tech_stack: [], live_url: "", github_url: "", thumbnail_url: "", category: "", featured: false, challenge: "", solution: "", key_features: [] });
     setEditId(null);
     setShowForm(false);
   };
 
   const startEdit = (project: Project) => {
-    setForm({ ...project, tech_stack: project.tech_stack ?? [] });
+    setForm({ ...project, tech_stack: project.tech_stack ?? [], key_features: project.key_features ?? [] });
     setEditId(project.id);
     setShowForm(true);
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -46,7 +46,7 @@ export default function ProjectsAdminPage() {
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, live_url: form.live_url || null, github_url: form.github_url || null, thumbnail_url: form.thumbnail_url || null, category: form.category || null }),
+        body: JSON.stringify({ ...form, live_url: form.live_url || null, github_url: form.github_url || null, thumbnail_url: form.thumbnail_url || null, category: form.category || null, challenge: form.challenge || null, solution: form.solution || null, key_features: form.key_features && form.key_features.length > 0 ? form.key_features : null }),
       });
       if (!res.ok) throw new Error((await res.json()).error);
       toast(editId ? "Project updated!" : "Project added!", "success");
@@ -96,7 +96,7 @@ export default function ProjectsAdminPage() {
         </div>
         <button
           onClick={() => { setShowForm(!showForm); if (showForm) resetForm(); else setEditId(null); }}
-          className="btn-glow px-4 py-2.5 text-sm shrink-0"
+          className="btn-primary px-4 py-2.5 text-sm shrink-0"
         >
           <span className="flex items-center gap-1.5">
             {showForm && !editId ? (
@@ -118,7 +118,7 @@ export default function ProjectsAdminPage() {
       {showForm && (
         <div className="form-section">
           <h2 className="form-section-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-purple-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-emerald-accent">
               <rect x="3" y="3" width="7" height="7" rx="1" /><rect x="14" y="3" width="7" height="7" rx="1" />
               <rect x="3" y="14" width="7" height="7" rx="1" /><rect x="14" y="14" width="7" height="7" rx="1" />
             </svg>
@@ -137,7 +137,7 @@ export default function ProjectsAdminPage() {
             <div className="flex items-center gap-3 pt-5">
               <div
                 onClick={() => setForm((f) => ({ ...f, featured: !f.featured }))}
-                className={`relative w-10 h-5.5 rounded-full cursor-pointer transition-all duration-300 ${form.featured ? "bg-purple-600" : "bg-slate-700"}`}
+                className={`relative w-10 h-5.5 rounded-full cursor-pointer transition-all duration-300 ${form.featured ? "bg-emerald-accent" : "bg-slate-700"}`}
                 style={{ height: "22px" }}
               >
                 <span
@@ -164,6 +164,61 @@ export default function ProjectsAdminPage() {
               <label className="form-label">GitHub URL</label>
               <input type="url" value={form.github_url ?? ""} onChange={(e) => setForm((f) => ({ ...f, github_url: e.target.value }))} placeholder="https://github.com/..." className="admin-input" />
             </div>
+            
+            <div className="sm:col-span-2 pt-4 border-t border-emerald-accent/10 mt-2">
+              <h3 className="text-sm font-semibold text-slate-200 mb-4 flex items-center gap-2">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-emerald-accent">
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" /><polyline points="14 2 14 8 20 8" /><line x1="16" y1="13" x2="8" y2="13" /><line x1="16" y1="17" x2="8" y2="17" /><polyline points="10 9 9 9 8 9" />
+                </svg>
+                Detailed Case Study (Optional)
+              </h3>
+            </div>
+            <div className="sm:col-span-2">
+              <label className="form-label">Challenge</label>
+              <textarea value={form.challenge ?? ""} onChange={(e) => setForm((f) => ({ ...f, challenge: e.target.value }))} placeholder="What problem does this project solve?" rows={3} className="admin-input resize-none" />
+            </div>
+            <div className="sm:col-span-2">
+              <label className="form-label">Solution</label>
+              <textarea value={form.solution ?? ""} onChange={(e) => setForm((f) => ({ ...f, solution: e.target.value }))} placeholder="How did you solve it?" rows={3} className="admin-input resize-none" />
+            </div>
+            <div className="sm:col-span-2">
+              <div className="flex items-center justify-between mb-2">
+                <label className="form-label mb-0">Key Features</label>
+                <button type="button" onClick={() => setForm((f) => ({ ...f, key_features: [...(f.key_features || []), { title: "", description: "" }] }))} className="text-xs text-emerald-accent hover:text-emerald-300 font-medium flex items-center gap-1">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3"><line x1="12" y1="5" x2="12" y2="19" /><line x1="5" y1="12" x2="19" y2="12" /></svg>
+                  Add Feature
+                </button>
+              </div>
+              <div className="space-y-3">
+                {form.key_features?.map((feat, idx) => (
+                  <div key={idx} className="flex gap-3 items-start bg-slate-800/30 p-3 rounded-lg border border-slate-700/50">
+                    <div className="flex-1 space-y-3">
+                      <input type="text" value={feat.title} onChange={(e) => {
+                        const newFeats = [...(form.key_features || [])];
+                        newFeats[idx].title = e.target.value;
+                        setForm((f) => ({ ...f, key_features: newFeats }));
+                      }} placeholder="Feature Title" className="admin-input py-2 text-sm" />
+                      <textarea value={feat.description} onChange={(e) => {
+                        const newFeats = [...(form.key_features || [])];
+                        newFeats[idx].description = e.target.value;
+                        setForm((f) => ({ ...f, key_features: newFeats }));
+                      }} placeholder="Feature Description" rows={2} className="admin-input py-2 text-sm resize-none" />
+                    </div>
+                    <button type="button" onClick={() => {
+                      const newFeats = form.key_features?.filter((_, i) => i !== idx);
+                      setForm((f) => ({ ...f, key_features: newFeats }));
+                    }} className="mt-1 p-1.5 text-slate-500 hover:text-red-400 hover:bg-red-400/10 rounded-md transition-colors">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4"><polyline points="3 6 5 6 21 6" /><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6" /></svg>
+                    </button>
+                  </div>
+                ))}
+                {(!form.key_features || form.key_features.length === 0) && (
+                  <div className="text-center py-6 bg-slate-800/20 border border-dashed border-slate-700 rounded-lg text-sm text-slate-500">
+                    No features added. Click "Add Feature" to highlight project capabilities.
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
           <ImageUpload
@@ -174,11 +229,11 @@ export default function ProjectsAdminPage() {
             aspectRatio="aspect-video"
           />
 
-          <div className="flex gap-3 mt-5 pt-4" style={{ borderTop: "1px solid rgba(139,92,246,0.1)" }}>
-            <button onClick={handleSave} disabled={saving} className="btn-glow px-5 py-2.5 text-sm disabled:opacity-50">
+          <div className="flex gap-3 mt-5 pt-4" style={{ borderTop: "1px solid rgba(16,185,129,0.1)" }}>
+            <button onClick={handleSave} disabled={saving} className="btn-primary px-5 py-2.5 text-sm disabled:opacity-50">
               <span>{saving ? "Saving..." : editId ? "Update Project" : "Add Project"}</span>
             </button>
-            <button onClick={resetForm} className="btn-outline px-4 py-2.5 text-sm">Cancel</button>
+            <button onClick={resetForm} className="btn-secondary px-4 py-2.5 text-sm">Cancel</button>
           </div>
         </div>
       )}

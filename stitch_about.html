@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About - Akhdan Anargya</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&amp;family=JetBrains+Mono:wght@400;500&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Tailwind Config -->
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "on-secondary-fixed": "#001a42",
+                    "on-secondary-fixed-variant": "#004395",
+                    "surface-container-low": "#1a1c20",
+                    "primary-fixed": "#6ffbbe",
+                    "surface-tint": "#4edea3",
+                    "on-primary": "#003824",
+                    "inverse-on-surface": "#2f3035",
+                    "surface-dim": "#111317",
+                    "surface-container": "#1e2024",
+                    "on-surface-variant": "#bbcabf",
+                    "charcoal-surface": "#16191E",
+                    "on-tertiary": "#650911",
+                    "charcoal-elevated": "#1F2329",
+                    "charcoal-deep": "#0F1115",
+                    "on-tertiary-fixed-variant": "#842225",
+                    "on-secondary": "#002e6a",
+                    "tertiary": "#ffb3af",
+                    "tertiary-fixed-dim": "#ffb3af",
+                    "surface-container-lowest": "#0c0e12",
+                    "secondary-fixed": "#d8e2ff",
+                    "on-tertiary-fixed": "#410005",
+                    "on-error": "#690005",
+                    "off-white": "#F9FAFB",
+                    "on-tertiary-container": "#711419",
+                    "tertiary-container": "#fc7c78",
+                    "on-background": "#e2e2e8",
+                    "inverse-primary": "#006c49",
+                    "error-container": "#93000a",
+                    "primary-fixed-dim": "#4edea3",
+                    "on-surface": "#e2e2e8",
+                    "primary-container": "#10b981",
+                    "surface-bright": "#37393e",
+                    "secondary-container": "#0566d9",
+                    "on-primary-fixed-variant": "#005236",
+                    "muted-gray": "#9CA3AF",
+                    "surface-container-high": "#282a2e",
+                    "primary": "#4edea3",
+                    "emerald-accent": "#10B981",
+                    "on-primary-fixed": "#002113",
+                    "inverse-surface": "#e2e2e8",
+                    "surface-container-highest": "#333539",
+                    "outline-variant": "#3c4a42",
+                    "tertiary-fixed": "#ffdad7",
+                    "outline": "#86948a",
+                    "secondary-fixed-dim": "#adc6ff",
+                    "on-error-container": "#ffdad6",
+                    "error": "#ffb4ab",
+                    "background": "#111317",
+                    "surface-variant": "#333539",
+                    "surface": "#111317",
+                    "secondary": "#adc6ff",
+                    "border-default": "#2D323B",
+                    "on-secondary-container": "#e6ecff",
+                    "on-primary-container": "#00422b"
+            },
+            "borderRadius": {
+                    "DEFAULT": "0.125rem",
+                    "lg": "0.25rem",
+                    "xl": "0.5rem",
+                    "full": "0.75rem"
+            },
+            "spacing": {
+                    "grid-gutter": "1.5rem",
+                    "grid-margin": "2rem",
+                    "card-padding": "2rem",
+                    "stack-gap": "0.75rem",
+                    "section-padding": "8rem"
+            },
+            "fontFamily": {
+                    "mono-label": ["JetBrains Mono"],
+                    "body-lg": ["Inter"],
+                    "headline-md": ["Manrope"],
+                    "display-lg": ["Manrope"],
+                    "display-lg-mobile": ["Manrope"],
+                    "body-base": ["Inter"],
+                    "mono-code": ["JetBrains Mono"],
+                    "headline-sm": ["Manrope"]
+            },
+            "fontSize": {
+                    "mono-label": ["14px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                    "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                    "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                    "display-lg-mobile": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                    "body-base": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                    "mono-code": ["13px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                    "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }]
+            }
+          }
+        }
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-surface antialiased font-body-base selection:bg-primary/30 selection:text-primary min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-md border-b border-border-default transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-grid-margin py-4 max-w-7xl mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface flex items-center gap-3">
+                Akhdan Anargya
+                <div class="hidden md:flex items-center gap-2 bg-charcoal-surface border border-border-default px-3 py-1 rounded-full">
+<span class="w-2 h-2 rounded-full bg-emerald-accent animate-pulse"></span>
+<span class="font-mono-code text-mono-code text-muted-gray">Available for Work</span>
+</div>
+</div>
+<ul class="hidden md:flex gap-8 items-center">
+<li><a class="text-primary font-bold border-b-2 border-primary pb-1 transition-all duration-300 ease-in-out" href="#">About</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed duration-200 transition-all duration-300 ease-in-out" href="#">Skills</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed duration-200 transition-all duration-300 ease-in-out" href="#">Projects</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed duration-200 transition-all duration-300 ease-in-out" href="#">Experience</a></li>
+<li><a class="text-on-surface-variant hover:text-primary transition-colors hover:text-primary-fixed duration-200 transition-all duration-300 ease-in-out" href="#">Contact</a></li>
+</ul>
+<button class="hidden md:block bg-emerald-accent text-charcoal-deep font-mono-label text-mono-label px-6 py-2 rounded transition-all hover:bg-surface-tint">
+                Resume
+            </button>
+<button class="md:hidden text-on-surface">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="flex-grow pt-[100px]">
+<!-- Hero Intro -->
+<section class="max-w-7xl mx-auto px-grid-margin py-section-padding">
+<h1 class="font-display-lg-mobile text-display-lg-mobile md:font-display-lg md:text-display-lg text-on-surface mb-stack-gap">
+                Who Am I?
+            </h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                I engineer scalable systems and craft precise user interfaces. My approach merges architectural rigor with modern web technologies to build solutions that endure.
+            </p>
+</section>
+<!-- Bento Grid Section -->
+<section class="max-w-7xl mx-auto px-grid-margin pb-section-padding">
+<div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter auto-rows-min">
+<!-- Main Bio Block -->
+<div class="col-span-1 md:col-span-8 bg-charcoal-surface border border-border-default p-card-padding rounded-lg group hover:shadow-[0_0_30px_rgba(78,222,163,0.05)] transition-shadow duration-500">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-primary">fingerprint</span>
+<h2 class="font-headline-md text-headline-md text-on-surface">The Philosophy</h2>
+</div>
+<p class="font-body-base text-body-base text-on-surface-variant mb-6 leading-relaxed">
+                        As a developer, I don't just write code; I construct digital environments. My methodology is deeply rooted in structural integrity—ensuring every component, from the backend database schema to the client-side rendering pipeline, serves a distinct, optimized purpose without unnecessary bloat.
+                    </p>
+<p class="font-body-base text-body-base text-on-surface-variant leading-relaxed">
+                        I thrive on untangling complexity. By breaking down convoluted business logic into elegant, performant micro-services and modular UI components, I prioritize clear signals over digital noise. Design is how it works, and I build it to work flawlessly.
+                    </p>
+</div>
+<!-- Abstract Visual Block -->
+<div class="col-span-1 md:col-span-4 bg-charcoal-surface border border-border-default rounded-lg overflow-hidden relative min-h-[320px]">
+<img alt="Code Structure" class="absolute inset-0 w-full h-full object-cover opacity-40 mix-blend-luminosity hover:mix-blend-normal hover:opacity-80 transition-all duration-700" data-alt="A macro shot of a sleek, dark-themed code editor on a high-resolution monitor. The screen displays complex, neatly indented programming syntax in vibrant emerald green and stark white against a deep charcoal background. The lighting is moody and architectural, emphasizing technical precision and a minimalist developer environment. The focus is sharp on the glowing text, blurring out into the dark peripheral edges of the screen." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCcL_toPc3se1xt79Th2lniwduf8zsVwJNtyn03RhWhlXJNRQkCsu0vRahi4mv2S2aNYCJWnF7Dq_7DwNrUwpFYtvT_ejCiffvDoFBxqi5vZ2dzVloTqfcgyJmtCUMdN1I9N-uNj5vkOdILF3Pa8awgDnSr11Uw6XR6QiBI_H69oWyQPGOMrXSNB2vKyNNGA38W25KYC5CkiiAbp9IUglj69J_JvBbi7s1ug_mlw6PCAN30r8teEjGbmqOXN5b2eqhBvK1UmbP5QtM"/>
+<div class="absolute inset-0 bg-gradient-to-t from-charcoal-deep to-transparent"></div>
+<div class="absolute bottom-6 left-6 right-6">
+<div class="bg-charcoal-elevated/80 backdrop-blur-md border border-border-default p-4 rounded inline-block">
+<span class="font-mono-code text-mono-code text-primary">System.initialize()</span>
+</div>
+</div>
+</div>
+<!-- Role Block -->
+<div class="col-span-1 md:col-span-4 bg-charcoal-surface border border-border-default p-card-padding rounded-lg group hover:border-outline-variant transition-colors duration-300 flex flex-col justify-between h-full">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-muted-gray">terminal</span>
+<h3 class="font-mono-label text-mono-label text-muted-gray uppercase tracking-widest">Current Role</h3>
+</div>
+<div class="font-display-lg-mobile text-display-lg-mobile text-on-surface leading-tight mb-2">Fullstack</div>
+<div class="font-headline-sm text-headline-sm text-primary">Developer</div>
+</div>
+<div class="mt-8 flex flex-wrap gap-2">
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-mono-code text-mono-code border border-primary/20">React</span>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-mono-code text-mono-code border border-primary/20">Node.js</span>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-mono-code text-mono-code border border-primary/20">TypeScript</span>
+</div>
+</div>
+<!-- Education Block -->
+<div class="col-span-1 md:col-span-4 bg-charcoal-surface border border-border-default p-card-padding rounded-lg group hover:border-outline-variant transition-colors duration-300 flex flex-col justify-between h-full">
+<div>
+<div class="flex items-center gap-2 mb-6">
+<span class="material-symbols-outlined text-muted-gray">account_balance</span>
+<h3 class="font-mono-label text-mono-label text-muted-gray uppercase tracking-widest">Education</h3>
+</div>
+<h4 class="font-headline-md text-headline-md text-on-surface leading-tight">Telkom</h4>
+<h4 class="font-headline-md text-headline-md text-on-surface mb-4">University</h4>
+</div>
+<p class="font-body-base text-body-base text-on-surface-variant mt-4 border-t border-border-default pt-4">
+                        Solidified my foundation in computer science, algorithmic thinking, and rigorous software engineering principles.
+                    </p>
+</div>
+<!-- Founder Block -->
+<div class="col-span-1 md:col-span-4 bg-emerald-accent text-charcoal-deep border border-emerald-accent p-card-padding rounded-lg relative overflow-hidden flex flex-col justify-center min-h-[250px]">
+<div class="absolute -right-8 -bottom-8 opacity-10 pointer-events-none transition-transform group-hover:scale-110 duration-700">
+<span class="material-symbols-outlined text-[160px]">rocket_launch</span>
+</div>
+<div class="relative z-10">
+<div class="font-mono-label text-mono-label mb-3 opacity-80 uppercase tracking-widest">Leadership</div>
+<h3 class="font-headline-md text-headline-md font-bold mb-4">Founder @ GokilTech</h3>
+<p class="font-body-base text-body-base font-medium opacity-90 max-w-[90%]">
+                            Spearheading technical innovation and architecting scalable solutions from the ground up to solve complex market challenges.
+                        </p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-charcoal-deep border-t border-border-default w-full py-section-padding mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center px-grid-margin gap-stack-gap max-w-7xl mx-auto">
+<div class="font-headline-sm text-headline-sm text-on-surface text-center md:text-left">
+                © 2024 Akhdan Anargya Arisadi. Built with precision.
+            </div>
+<ul class="flex gap-6">
+<li><a class="font-mono-label text-mono-label text-muted-gray hover:text-emerald-accent transition-colors opacity-80 hover:opacity-100" href="#">GitHub</a></li>
+<li><a class="font-mono-label text-mono-label text-muted-gray hover:text-emerald-accent transition-colors opacity-80 hover:opacity-100" href="#">LinkedIn</a></li>
+<li><a class="font-mono-label text-mono-label text-muted-gray hover:text-emerald-accent transition-colors opacity-80 hover:opacity-100" href="#">Twitter</a></li>
+<li><a class="font-mono-label text-mono-label text-muted-gray hover:text-emerald-accent transition-colors opacity-80 hover:opacity-100" href="#">Email</a></li>
+</ul>
+</div>
+</footer>
+</body></html>

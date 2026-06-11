@@ -6,6 +6,11 @@ const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "placeholde
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 // Types
+export type ProjectFeature = {
+  title: string;
+  description: string;
+};
+
 export type Project = {
   id: string;
   title: string;
@@ -17,6 +22,9 @@ export type Project = {
   category: string | null;
   featured: boolean;
   order_index: number;
+  challenge: string | null;
+  solution: string | null;
+  key_features: ProjectFeature[] | null;
   created_at: string;
 };
 

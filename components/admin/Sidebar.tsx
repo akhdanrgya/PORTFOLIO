@@ -85,7 +85,7 @@ export default function Sidebar() {
       {/* Mobile Toggle Button */}
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="md:hidden fixed top-4 left-4 z-50 w-10 h-10 rounded-xl bg-[#0f0f1a]/90 backdrop-blur-md border border-white/10 flex flex-col items-center justify-center gap-1.5"
+        className="md:hidden fixed top-4 left-4 z-50 w-10 h-10 rounded-xl bg-charcoal-deep/90 backdrop-blur-md border border-white/10 flex flex-col items-center justify-center gap-1.5"
       >
         <span className={`block w-5 h-0.5 bg-slate-300 transition-all ${isOpen ? "rotate-45 translate-y-2" : ""}`} />
         <span className={`block w-5 h-0.5 bg-slate-300 transition-all ${isOpen ? "opacity-0" : ""}`} />
@@ -101,15 +101,15 @@ export default function Sidebar() {
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed md:sticky top-0 left-0 z-50 h-screen w-64 flex flex-col shrink-0 bg-[#0f0f1a]/85 backdrop-blur-2xl border-r border-white/5 transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
+      <aside className={`fixed md:sticky top-0 left-0 z-50 h-screen w-64 flex flex-col shrink-0 bg-charcoal-surface/85 backdrop-blur-2xl border-r border-border-default transition-transform duration-300 ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}>
         {/* Logo */}
-        <div className="px-8 py-8 border-b border-white/5">
+        <div className="px-8 py-8 border-b border-border-default">
           <Link href="/" target="_blank" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-violet-500 flex items-center justify-center text-white font-black text-sm shadow-lg shadow-purple-500/20">
+            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-emerald-accent to-emerald-600 flex items-center justify-center text-charcoal-deep font-black text-sm shadow-lg shadow-emerald-accent/20">
               AA
             </div>
             <div>
-              <p className="text-white font-bold text-sm leading-tight tracking-wide">Akhdan<span className="text-purple-400">.</span></p>
+              <p className="text-white font-bold text-sm leading-tight tracking-wide">Akhdan<span className="text-emerald-accent">.</span></p>
               <p className="text-slate-500 text-[11px] font-medium uppercase tracking-widest mt-0.5">Admin Panel</p>
             </div>
           </Link>
@@ -127,11 +127,11 @@ export default function Sidebar() {
                 onClick={() => setIsOpen(false)}
                 className={`flex items-center gap-3.5 px-4 py-3.5 rounded-xl text-sm font-medium transition-all duration-300 group ${
                   active
-                    ? "bg-purple-500/10 text-purple-300 border border-purple-500/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
+                    ? "bg-emerald-accent/10 text-emerald-accent border border-emerald-accent/20 shadow-[inset_0_1px_0_rgba(255,255,255,0.05)]"
                     : "text-slate-400 border border-transparent hover:bg-white/5 hover:text-slate-200"
                 }`}
               >
-                <span className={active ? "text-purple-400" : "text-slate-500 group-hover:text-slate-300 transition-colors"}>{item.icon}</span>
+                <span className={active ? "text-emerald-accent" : "text-slate-500 group-hover:text-slate-300 transition-colors"}>{item.icon}</span>
                 {item.label}
               </Link>
             );

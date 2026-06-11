@@ -65,7 +65,7 @@ export default function SkillsAdminPage() {
         </div>
         <button
           onClick={() => setShowForm(!showForm)}
-          className="btn-glow px-4 py-2.5 text-sm shrink-0"
+          className="btn-primary px-4 py-2.5 text-sm shrink-0"
         >
           <span className="flex items-center gap-1.5">
             {showForm ? (
@@ -87,7 +87,7 @@ export default function SkillsAdminPage() {
       {showForm && (
         <div className="form-section">
           <h2 className="form-section-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-purple-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-emerald-accent">
               <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
             </svg>
             Add New Skill
@@ -136,14 +136,14 @@ export default function SkillsAdminPage() {
           />
           <p className="text-xs text-slate-600 mt-2">
             Tip: Use devicons URL e.g.{" "}
-            <a href="https://devicon.dev" target="_blank" className="text-purple-500 hover:text-purple-400">devicon.dev</a>
+            <a href="https://devicon.dev" target="_blank" className="text-emerald-accent hover:text-emerald-400">devicon.dev</a>
           </p>
 
-          <div className="flex gap-3 mt-5 pt-4" style={{ borderTop: "1px solid rgba(139,92,246,0.1)" }}>
-            <button onClick={handleAdd} disabled={saving} className="btn-glow px-5 py-2.5 text-sm disabled:opacity-50">
+          <div className="flex gap-3 mt-5 pt-4" style={{ borderTop: "1px solid rgba(16,185,129,0.1)" }}>
+            <button onClick={handleAdd} disabled={saving} className="btn-primary px-5 py-2.5 text-sm disabled:opacity-50">
               <span>{saving ? "Saving..." : "Add Skill"}</span>
             </button>
-            <button onClick={() => setShowForm(false)} className="btn-outline px-4 py-2.5 text-sm">Cancel</button>
+            <button onClick={() => setShowForm(false)} className="btn-secondary px-4 py-2.5 text-sm">Cancel</button>
           </div>
         </div>
       )}
@@ -199,7 +199,7 @@ function SkillCard({ skill, onDelete }: { skill: Skill; onDelete: (id: string, n
         {skill.icon_url ? (
           <Image src={skill.icon_url} alt={skill.name} fill className="object-contain" />
         ) : (
-          <div className="w-full h-full rounded-lg bg-purple-500/15 flex items-center justify-center text-purple-300 font-bold text-xs">
+          <div className="w-full h-full rounded-lg bg-emerald-accent/15 flex items-center justify-center text-emerald-300 font-bold text-xs">
             {skill.name.slice(0, 2)}
           </div>
         )}

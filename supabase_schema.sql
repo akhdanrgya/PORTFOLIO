@@ -12,6 +12,9 @@ CREATE TABLE projects (
   category TEXT,
   featured BOOLEAN DEFAULT false,
   order_index INT DEFAULT 0,
+  challenge TEXT,
+  solution TEXT,
+  key_features JSONB,
   created_at TIMESTAMPTZ DEFAULT now()
 );
 

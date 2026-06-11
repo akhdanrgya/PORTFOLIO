@@ -16,56 +16,53 @@ export default function Certifications({ certifications }: { certifications: Cer
   if (certifications.length === 0) return null;
 
   return (
-    <section id="certifications" className="w-full py-16 sm:py-24 lg:py-40 px-4 sm:px-6 lg:px-8 flex justify-center">
-      <div className="w-full max-w-6xl">
-        <AnimatedSection className="text-center mb-16">
-          <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">{t("certifications.subtitle")}</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-2">
-            {t("certifications.title1")}<span className="gradient-text">{t("certifications.title2")}</span>
-          </h2>
-          <div className="section-divider mx-auto" />
-        </AnimatedSection>
+    <section id="certifications" className="max-w-7xl mx-auto px-4 sm:px-8 py-32">
+      <AnimatedSection className="text-center mb-16">
+        <h2 className="section-label mb-4">{t("certifications.subtitle")}</h2>
+        <p className="text-headline-md text-on-surface">
+          {t("certifications.title1")}<span className="text-emerald-accent">{t("certifications.title2")}</span>
+        </p>
+      </AnimatedSection>
 
-        <AnimatedSection stagger>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-            {certifications.map((cert) => (
-              <a
-                key={cert.id}
-                href={cert.cert_url ?? undefined}
-                target={cert.cert_url ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                className={`glass-card p-6 lg:p-8 flex gap-5 items-start ${cert.cert_url ? "cursor-pointer" : "cursor-default"}`}
-              >
-                {/* Image/badge */}
-                <div className="shrink-0">
-                  {cert.image_url ? (
-                    <div className="relative w-14 h-14 rounded-xl overflow-hidden border border-purple-500/20">
-                      <Image src={cert.image_url} alt={cert.title} fill className="object-contain p-1" />
-                    </div>
-                  ) : (
-                    <div className="w-14 h-14 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-2xl">
-                      ◉
-                    </div>
-                  )}
-                </div>
+      <AnimatedSection stagger>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {certifications.map((cert) => (
+            <a
+              key={cert.id}
+              href={cert.cert_url ?? undefined}
+              target={cert.cert_url ? "_blank" : undefined}
+              rel="noopener noreferrer"
+              className={`bento-card p-6 lg:p-8 flex gap-5 items-start ${cert.cert_url ? "cursor-pointer" : "cursor-default"}`}
+            >
+              {/* Image/badge */}
+              <div className="shrink-0">
+                {cert.image_url ? (
+                  <div className="relative w-14 h-14 rounded-xl overflow-hidden border border-border-default">
+                    <Image src={cert.image_url} alt={cert.title} fill className="object-contain p-1" />
+                  </div>
+                ) : (
+                  <div className="w-14 h-14 rounded-xl bg-emerald-accent/10 border border-emerald-accent/20 flex items-center justify-center text-2xl text-emerald-accent">
+                    ◉
+                  </div>
+                )}
+              </div>
 
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-semibold text-sm leading-tight truncate">{cert.title}</h3>
-                  <p className="text-purple-400 text-xs font-medium mt-0.5">{cert.issuer}</p>
-                  {cert.issue_date && (
-                    <p className="text-slate-500 text-xs mt-1">{formatDate(cert.issue_date)}</p>
-                  )}
-                  {cert.cert_url && (
-                    <span className="text-xs text-purple-400 mt-2 inline-block hover:text-purple-300">
-                      {t("certifications.view")}
-                    </span>
-                  )}
-                </div>
-              </a>
-            ))}
-          </div>
-        </AnimatedSection>
-      </div>
+              <div className="flex-1 min-w-0">
+                <h3 className="text-on-surface font-semibold text-sm leading-tight truncate">{cert.title}</h3>
+                <p className="text-emerald-accent text-xs font-medium mt-0.5">{cert.issuer}</p>
+                {cert.issue_date && (
+                  <p className="text-muted-gray text-xs mt-1">{formatDate(cert.issue_date)}</p>
+                )}
+                {cert.cert_url && (
+                  <span className="text-xs text-emerald-accent mt-2 inline-block hover:text-emerald-hover transition-colors">
+                    {t("certifications.view")}
+                  </span>
+                )}
+              </div>
+            </a>
+          ))}
+        </div>
+      </AnimatedSection>
     </section>
   );
 }

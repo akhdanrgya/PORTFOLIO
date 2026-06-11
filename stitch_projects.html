@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Akhdan Anargya - Projects</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;family=Manrope:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#001a42",
+                        "on-secondary-fixed-variant": "#004395",
+                        "surface-container-low": "#1a1c20",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-tint": "#4edea3",
+                        "on-primary": "#003824",
+                        "inverse-on-surface": "#2f3035",
+                        "surface-dim": "#111317",
+                        "surface-container": "#1e2024",
+                        "on-surface-variant": "#bbcabf",
+                        "charcoal-surface": "#16191E",
+                        "on-tertiary": "#650911",
+                        "charcoal-elevated": "#1F2329",
+                        "charcoal-deep": "#0F1115",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "on-secondary": "#002e6a",
+                        "tertiary": "#ffb3af",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "surface-container-lowest": "#0c0e12",
+                        "secondary-fixed": "#d8e2ff",
+                        "on-tertiary-fixed": "#410005",
+                        "on-error": "#690005",
+                        "off-white": "#F9FAFB",
+                        "on-tertiary-container": "#711419",
+                        "tertiary-container": "#fc7c78",
+                        "on-background": "#e2e2e8",
+                        "inverse-primary": "#006c49",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-surface": "#e2e2e8",
+                        "primary-container": "#10b981",
+                        "surface-bright": "#37393e",
+                        "secondary-container": "#0566d9",
+                        "on-primary-fixed-variant": "#005236",
+                        "muted-gray": "#9CA3AF",
+                        "surface-container-high": "#282a2e",
+                        "primary": "#4edea3",
+                        "emerald-accent": "#10B981",
+                        "on-primary-fixed": "#002113",
+                        "inverse-surface": "#e2e2e8",
+                        "surface-container-highest": "#333539",
+                        "outline-variant": "#3c4a42",
+                        "tertiary-fixed": "#ffdad7",
+                        "outline": "#86948a",
+                        "secondary-fixed-dim": "#adc6ff",
+                        "on-error-container": "#ffdad6",
+                        "error": "#ffb4ab",
+                        "background": "#111317",
+                        "surface-variant": "#333539",
+                        "surface": "#111317",
+                        "secondary": "#adc6ff",
+                        "border-default": "#2D323B",
+                        "on-secondary-container": "#e6ecff",
+                        "on-primary-container": "#00422b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.125rem",
+                        "lg": "0.25rem",
+                        "xl": "0.5rem",
+                        "full": "0.75rem"
+                    },
+                    "spacing": {
+                        "grid-gutter": "1.5rem",
+                        "grid-margin": "2rem",
+                        "card-padding": "2rem",
+                        "stack-gap": "0.75rem",
+                        "section-padding": "8rem"
+                    },
+                    "fontFamily": {
+                        "mono-label": ["JetBrains Mono"],
+                        "body-lg": ["Inter"],
+                        "headline-md": ["Manrope"],
+                        "display-lg": ["Manrope"],
+                        "display-lg-mobile": ["Manrope"],
+                        "body-base": ["Inter"],
+                        "mono-code": ["JetBrains Mono"],
+                        "headline-sm": ["Manrope"]
+                    },
+                    "fontSize": {
+                        "mono-label": ["14px", { "lineHeight": "1.0", "letterSpacing": "0.05em", "fontWeight": "500" }],
+                        "body-lg": ["18px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "headline-md": ["32px", { "lineHeight": "1.3", "fontWeight": "700" }],
+                        "display-lg": ["64px", { "lineHeight": "1.1", "letterSpacing": "-0.04em", "fontWeight": "800" }],
+                        "display-lg-mobile": ["40px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "800" }],
+                        "body-base": ["16px", { "lineHeight": "1.6", "fontWeight": "400" }],
+                        "mono-code": ["13px", { "lineHeight": "1.5", "fontWeight": "400" }],
+                        "headline-sm": ["24px", { "lineHeight": "1.4", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-charcoal-deep text-on-surface font-body-base antialiased selection:bg-emerald-accent/30 selection:text-emerald-accent">
+<!-- TopNavBar -->
+<header class="fixed top-0 w-full z-50 bg-background/40 backdrop-blur-md border-b border-border-default transition-all duration-300 ease-in-out">
+<div class="flex justify-between items-center px-grid-margin py-4 max-w-7xl mx-auto">
+<div class="font-headline-sm text-headline-sm font-bold text-on-surface">
+                Akhdan Anargya
+            </div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-base text-body-base hover:text-primary-fixed duration-200" href="#">About</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-base text-body-base hover:text-primary-fixed duration-200" href="#">Skills</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-body-base text-body-base hover:text-primary-fixed duration-200" href="#">Projects</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-base text-body-base hover:text-primary-fixed duration-200" href="#">Experience</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-body-base text-body-base hover:text-primary-fixed duration-200" href="#">Contact</a>
+</nav>
+<button class="bg-emerald-accent text-charcoal-deep px-4 py-2 rounded font-body-base text-body-base font-medium hover:bg-surface-tint transition-colors">
+                Resume
+            </button>
+</div>
+</header>
+<!-- Main Content -->
+<main class="pt-32 pb-section-padding px-grid-margin max-w-7xl mx-auto">
+<!-- Header Section -->
+<section class="mb-16">
+<h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-off-white mb-4">Projects Portfolio</h1>
+<p class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl">
+                A selection of my recent engineering work, focusing on structural integrity, scalable architectures, and user-centric problem solving.
+            </p>
+</section>
+<!-- Projects Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-12 gap-grid-gutter">
+<!-- Featured Project: KangKeliling -->
+<div class="md:col-span-12 bg-charcoal-surface border border-border-default rounded-lg overflow-hidden group hover:shadow-[0_0_20px_rgba(78,222,163,0.1)] transition-all duration-300 flex flex-col md:flex-row">
+<div class="md:w-1/2 h-64 md:h-auto overflow-hidden">
+<img alt="KangKeliling Dashboard Preview" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="A sophisticated, dark-themed dashboard interface displaying real-time geographic data and analytics for a mobile vendor tracking system. The UI is sharp, minimalist, and engineering-focused, utilizing a deep charcoal background with precise emerald green data visualizations and crisp white typography. The design emphasizes structural density and functional clarity." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8EGmWJF5TaZbq76Th8SP8O9hxdJDBuWDYFbXLRvHazkXPnyzqnvmRLWMX3euF-qz7jZpQh3jJUIoSPUWB3ptg3kdQGkfWUk77d7Cz148hcvd8vBW8Rka0watxQXAlYpVuXlyMSEMWRjrLApZZ1lU_rvb3JRSDQKMEuICjqpDBLyzJAN8oOzXj1hlxBRnDBtzD4pxSqtMwetuFbfTLf05FuNZYglztSJwV3KRb93G484aYTLeVRJwpNy8yLoMiqnl3L9LTfQ6RwDM"/>
+</div>
+<div class="md:w-1/2 p-card-padding flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-4">
+<h2 class="font-headline-md text-headline-md text-off-white">KangKeliling</h2>
+<span class="material-symbols-outlined text-emerald-accent">open_in_new</span>
+</div>
+<p class="font-body-base text-body-base text-on-surface-variant mb-6">
+                            A real-time tracking and management platform designed to connect mobile food vendors with local neighborhoods. Features include live geolocation, transaction tracking, and an optimized route mapping algorithm to improve vendor visibility and sales.
+                        </p>
+</div>
+<div>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="bg-emerald-accent/10 text-emerald-accent font-mono-code text-mono-code px-3 py-1 rounded-full border border-emerald-accent/20">Flutter</span>
+<span class="bg-emerald-accent/10 text-emerald-accent font-mono-code text-mono-code px-3 py-1 rounded-full border border-emerald-accent/20">Firebase</span>
+<span class="bg-emerald-accent/10 text-emerald-accent font-mono-code text-mono-code px-3 py-1 rounded-full border border-emerald-accent/20">Google Maps API</span>
+<span class="bg-emerald-accent/10 text-emerald-accent font-mono-code text-mono-code px-3 py-1 rounded-full border border-emerald-accent/20">Node.js</span>
+</div>
+<a class="inline-flex items-center gap-2 text-emerald-accent font-mono-label text-mono-label hover:text-primary-fixed transition-colors" href="#">
+                            View Case Study <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+</div>
+</div>
+<!-- Project: Estima Company Profile -->
+<div class="md:col-span-6 bg-charcoal-surface border border-border-default rounded-lg overflow-hidden group hover:shadow-[0_0_20px_rgba(78,222,163,0.1)] transition-all duration-300 flex flex-col">
+<div class="h-48 overflow-hidden border-b border-border-default">
+<img alt="Estima Company Profile Web Design" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="A modern, high-contrast corporate website layout displayed on a sleek monitor. The design is architectural and minimal, featuring a deep dark background with structured 'bento box' grid sections. Sharp 1px borders and subtle tonal layering create depth without heavy shadows. The aesthetic is professional, clean, and engineering-led." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBWldiDNiK8LvWwUX29fOhahl4cOe9b51VsZ-rHx1hvxrfDpgq9GOlTNgnGwJk_rAb-YrsE-iBudb1p75xGpBcj9ntDJUgCAk57rUF5GP3EhrFc7oYm7Yt-vI927xulfn862cXXKGtDK28VHxbB6NFams6-lb7oq1iKgXhj1ceUujEdvhaZY5Lpb3oEXAYx3X_Atqn8K4ZvUfpokzockYyJg2_aOnUOOHUcJCeV-BzbhfOisdPmYheGfNVGKSUyVvZSfuDGT0jykPI"/>
+</div>
+<div class="p-card-padding flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-off-white mb-2">Estima Company Profile</h3>
+<p class="font-body-base text-body-base text-on-surface-variant mb-6 line-clamp-3">
+                            A high-performance corporate landing page built for an architecture firm. Focused on SEO optimization, lightning-fast load times, and a bespoke CMS for easy portfolio updates without developer intervention.
+                        </p>
+</div>
+<div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-emerald-accent/10 text-emerald-accent font-mono-code text-mono-code px-2 py-1 rounded-full border border-emerald-accent/20">Next.js</span>
+<span class="bg-emerald-accent/10 text-emerald-accent font-mono-code text-mono-code px-2 py-1 rounded-full border border-emerald-accent/20">Tailwind CSS</span>
+<span class="bg-emerald-accent/10 text-emerald-accent font-mono-code text-mono-code px-2 py-1 rounded-full border border-emerald-accent/20">Sanity.io</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Project: BATARA -->
+<div class="md:col-span-6 bg-charcoal-surface border border-border-default rounded-lg overflow-hidden group hover:shadow-[0_0_20px_rgba(78,222,163,0.1)] transition-all duration-300 flex flex-col">
+<div class="h-48 overflow-hidden border-b border-border-default">
+<img alt="BATARA Application Code" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" data-alt="Close up shot of a dark-themed code editor displaying dense, structured backend logic. The environment is highly technical and precise, illuminated entirely by the glow of the screen. Syntax highlighting features crisp whites, subtle grays, and strategic emerald green accents against a deep charcoal background, reflecting a signal-over-noise philosophy." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBq8ycqDTem5F-7yF2jG1rbDI9UNTcMssGVTZ3Yjy2nDuX8co2LX3xbLw8H0HYXLRkmbvLC6puE_YXLz8Wdda0-Ul62skvHNMa2cW3KztY36lm6tNhgRyHL2IPUc5wbBXo7zZxflm6yQ2sDbCrH2d_RKT9SSH5jOdG8uD8FE_88DoIRS3OY3NDl3dWt4NSwZFiTQwqECD5LIHX-a1vUiI1c-Lfp4KXmWE3EtYQNfoupqyf6l7Qym5fGhkiCtfc9OFBN-3L-v3wCKB4"/>
+</div>
+<div class="p-card-padding flex-grow flex flex-col justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm text-off-white mb-2">BATARA</h3>
+<p class="font-body-base text-body-base text-on-surface-variant mb-6 line-clamp-3">
+                            A comprehensive internal tool designed to streamline operational workflows and data processing. It integrates multiple legacy databases into a unified, secure, and highly responsive web interface, drastically reducing manual data entry.
+                        </p>
+</div>
+<div>
+<div class="flex flex-wrap gap-2 mb-4">
+<span class="bg-emerald-accent/10 text-emerald-accent font-mono-code text-mono-code px-2 py-1 rounded-full border border-emerald-accent/20">React</span>
+<span class="bg-emerald-accent/10 text-emerald-accent font-mono-code text-mono-code px-2 py-1 rounded-full border border-emerald-accent/20">PostgreSQL</span>
+<span class="bg-emerald-accent/10 text-emerald-accent font-mono-code text-mono-code px-2 py-1 rounded-full border border-emerald-accent/20">Express.js</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Other Minor Projects or Contributions could go here in 1/3 columns if needed -->
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full py-section-padding bg-charcoal-deep border-t border-border-default">
+<div class="flex flex-col md:flex-row justify-between items-center px-grid-margin gap-stack-gap max-w-7xl mx-auto">
+<div class="font-headline-sm text-headline-sm text-on-surface">
+                Akhdan Anargya
+            </div>
+<div class="flex gap-6">
+<a class="text-muted-gray hover:text-emerald-accent transition-colors opacity-80 hover:opacity-100 font-mono-label text-mono-label" href="#">GitHub</a>
+<a class="text-muted-gray hover:text-emerald-accent transition-colors opacity-80 hover:opacity-100 font-mono-label text-mono-label" href="#">LinkedIn</a>
+<a class="text-muted-gray hover:text-emerald-accent transition-colors opacity-80 hover:opacity-100 font-mono-label text-mono-label" href="#">Twitter</a>
+<a class="text-muted-gray hover:text-emerald-accent transition-colors opacity-80 hover:opacity-100 font-mono-label text-mono-label" href="#">Email</a>
+</div>
+<div class="text-emerald-accent font-mono-label text-mono-label">
+                © 2024 Akhdan Anargya Arisadi. Built with precision.
+            </div>
+</div>
+</footer>
+</body></html>

@@ -77,7 +77,7 @@ export default function CertificationsAdminPage() {
         </div>
         <button
           onClick={() => { setShowForm(!showForm); if (showForm) resetForm(); else setEditId(null); }}
-          className="btn-glow px-4 py-2.5 text-sm shrink-0"
+          className="btn-primary px-4 py-2.5 text-sm shrink-0"
         >
           <span className="flex items-center gap-1.5">
             {showForm && !editId ? (
@@ -99,7 +99,7 @@ export default function CertificationsAdminPage() {
       {showForm && (
         <div className="form-section">
           <h2 className="form-section-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-purple-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-emerald-accent">
               <circle cx="12" cy="8" r="6" /><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
             </svg>
             {editId ? "Edit Certification" : "Add Certification"}
@@ -132,11 +132,11 @@ export default function CertificationsAdminPage() {
             aspectRatio="aspect-square max-w-[140px]"
           />
 
-          <div className="flex gap-3 mt-5 pt-4" style={{ borderTop: "1px solid rgba(139,92,246,0.1)" }}>
-            <button onClick={handleSave} disabled={saving} className="btn-glow px-5 py-2.5 text-sm disabled:opacity-50">
+          <div className="flex gap-3 mt-5 pt-4" style={{ borderTop: "1px solid rgba(16,185,129,0.1)" }}>
+            <button onClick={handleSave} disabled={saving} className="btn-primary px-5 py-2.5 text-sm disabled:opacity-50">
               <span>{saving ? "Saving..." : editId ? "Update" : "Add Certification"}</span>
             </button>
-            <button onClick={resetForm} className="btn-outline px-4 py-2.5 text-sm">Cancel</button>
+            <button onClick={resetForm} className="btn-secondary px-4 py-2.5 text-sm">Cancel</button>
           </div>
         </div>
       )}
@@ -163,11 +163,11 @@ export default function CertificationsAdminPage() {
               {/* Badge */}
               <div className="shrink-0">
                 {cert.image_url ? (
-                  <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-purple-500/20">
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden border border-emerald-accent/20">
                     <Image src={cert.image_url} alt={cert.title} fill className="object-contain p-1" />
                   </div>
                 ) : (
-                  <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400">
+                  <div className="w-12 h-12 rounded-xl bg-emerald-accent/10 border border-emerald-accent/20 flex items-center justify-center text-emerald-accent">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" className="w-6 h-6">
                       <circle cx="12" cy="8" r="6" /><path d="M15.477 12.89L17 22l-5-3-5 3 1.523-9.11" />
                     </svg>
@@ -178,14 +178,14 @@ export default function CertificationsAdminPage() {
               {/* Info */}
               <div className="flex-1 min-w-0">
                 <h3 className="text-slate-100 font-semibold text-sm leading-tight line-clamp-1">{cert.title}</h3>
-                <p className="text-purple-400 text-xs font-medium mt-0.5">{cert.issuer}</p>
+                <p className="text-emerald-accent text-xs font-medium mt-0.5">{cert.issuer}</p>
                 {cert.issue_date && (
                   <p className="text-slate-600 text-xs mt-0.5">
                     {new Date(cert.issue_date).toLocaleDateString("en-US", { month: "long", year: "numeric" })}
                   </p>
                 )}
                 {cert.cert_url && (
-                  <a href={cert.cert_url} target="_blank" rel="noopener noreferrer" className="text-xs text-purple-500 hover:text-purple-400 mt-0.5 inline-block">
+                  <a href={cert.cert_url} target="_blank" rel="noopener noreferrer" className="text-xs text-emerald-accent hover:text-emerald-400 mt-0.5 inline-block">
                     View ↗
                   </a>
                 )}

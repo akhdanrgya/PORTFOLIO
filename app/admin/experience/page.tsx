@@ -90,7 +90,7 @@ export default function ExperienceAdminPage() {
         </div>
         <button
           onClick={() => { setShowForm(!showForm); if (showForm) resetForm(); else setEditId(null); }}
-          className="btn-glow px-4 py-2.5 text-sm shrink-0"
+          className="btn-primary px-4 py-2.5 text-sm shrink-0"
         >
           <span className="flex items-center gap-1.5">
             {showForm && !editId ? (
@@ -112,7 +112,7 @@ export default function ExperienceAdminPage() {
       {showForm && (
         <div className="form-section">
           <h2 className="form-section-title">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-purple-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-emerald-accent">
               <rect x="2" y="7" width="20" height="14" rx="2" /><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2" />
             </svg>
             {editId ? "Edit Experience" : "Add New Experience"}
@@ -149,11 +149,11 @@ export default function ExperienceAdminPage() {
             aspectRatio="aspect-square max-w-[100px]"
           />
 
-          <div className="flex gap-3 mt-5 pt-4" style={{ borderTop: "1px solid rgba(139,92,246,0.1)" }}>
-            <button onClick={handleSave} disabled={saving} className="btn-glow px-5 py-2.5 text-sm disabled:opacity-50">
+          <div className="flex gap-3 mt-5 pt-4" style={{ borderTop: "1px solid rgba(16,185,129,0.1)" }}>
+            <button onClick={handleSave} disabled={saving} className="btn-primary px-5 py-2.5 text-sm disabled:opacity-50">
               <span>{saving ? "Saving..." : editId ? "Update" : "Add Experience"}</span>
             </button>
-            <button onClick={resetForm} className="btn-outline px-4 py-2.5 text-sm">Cancel</button>
+            <button onClick={resetForm} className="btn-secondary px-4 py-2.5 text-sm">Cancel</button>
           </div>
         </div>
       )}
@@ -180,11 +180,11 @@ export default function ExperienceAdminPage() {
               {/* Logo */}
               <div className="shrink-0">
                 {exp.logo_url ? (
-                  <div className="relative w-11 h-11 rounded-xl overflow-hidden border border-purple-500/20">
+                  <div className="relative w-11 h-11 rounded-xl overflow-hidden border border-emerald-accent/20">
                     <Image src={exp.logo_url} alt={exp.company} fill className="object-contain p-1" />
                   </div>
                 ) : (
-                  <div className="w-11 h-11 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 font-bold text-xs">
+                  <div className="w-11 h-11 rounded-xl bg-emerald-accent/10 border border-emerald-accent/20 flex items-center justify-center text-emerald-accent font-bold text-xs">
                     {exp.company.slice(0, 2).toUpperCase()}
                   </div>
                 )}

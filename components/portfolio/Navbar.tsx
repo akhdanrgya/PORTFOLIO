@@ -4,20 +4,21 @@ import Link from "next/link";
 import { useLanguage } from "@/lib/LanguageContext";
 import type { TranslationKey } from "@/lib/translations";
 
+import { usePathname } from "next/navigation";
+
 const navLinks: { href: string; labelKey: TranslationKey }[] = [
-  { href: "#about", labelKey: "nav.about" },
-  { href: "#skills", labelKey: "nav.skills" },
-  { href: "#projects", labelKey: "nav.projects" },
-  { href: "#experience", labelKey: "nav.experience" },
-  { href: "#certifications", labelKey: "nav.certifications" },
-  { href: "#contact", labelKey: "nav.contact" },
+  { href: "/", labelKey: "nav.home" },
+  { href: "/about", labelKey: "nav.about" },
+  { href: "/skills", labelKey: "nav.skills" },
+  { href: "/projects", labelKey: "nav.projects" },
+  { href: "/contact", labelKey: "nav.contact" },
 ];
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [langOpen, setLangOpen] = useState(false);
-  const [active, setActive] = useState("");
   const { locale, toggleLocale, t } = useLanguage();
   const langRef = useRef<HTMLDivElement>(null);
 
@@ -33,7 +34,6 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  // Close lang dropdown on outside click
   useEffect(() => {
     const handler = (e: MouseEvent) => {
       if (langRef.current && !langRef.current.contains(e.target as Node)) {
@@ -44,192 +44,180 @@ export default function Navbar() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  useEffect(() => {
-    const sections = navLinks.map((l) => document.querySelector(l.href));
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((e) => {
-          if (e.isIntersecting) setActive(`#${e.target.id}`);
-        });
-      },
-      { rootMargin: "-40% 0px -55% 0px" }
-    );
-    sections.forEach((s) => s && observer.observe(s));
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="fixed top-0 left-0 right-0 z-50 pointer-events-none flex justify-center">
-      <nav
-        className={`w-full pointer-events-auto transition-all duration-300 flex flex-col items-center ${scrolled
-            ? "bg-[#0f0f1a]/85 backdrop-blur-xl border-b border-purple-500/15 shadow-lg shadow-black/20"
-            : "bg-transparent border-b border-transparent"
-          }`}
-      >
-        {/* Wrapper */}
-        <div className="relative h-20 px-4 sm:px-12 flex items-center justify-between w-full max-w-6xl">
+    <nav
+      className={`fixed top-0 w-full z-50 transition-all duration-300 ease-in-out border-b ${
+        scrolled
+          ? "bg-[#111317]/40 backdrop-blur-md border-border-default"
+          : "bg-transparent border-transparent"
+      }`}
+    >
+      <div className="flex justify-between items-center py-4 max-w-7xl mx-auto px-4 sm:px-8">
+        {/* Logo */}
+        <Link href="/" className="text-headline-sm font-bold text-on-surface tracking-tight">
+          Akhdan Anargya
+        </Link>
 
-          {/* ── Logo (left) ── */}
-          <Link href="/" className="flex items-center gap-3 group shrink-0 z-10">
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-600 to-violet-500 flex items-center justify-center text-white font-bold text-sm shadow-lg group-hover:shadow-purple-500/30 transition-all duration-300 sm:hidden">
-              AA
-            </div>
-            <span className="font-bold text-white text-sm hidden sm:block tracking-tight">
-              Akhdan Anargya Arisadi<span className="text-purple-400">.</span>
-            </span>
-          </Link>
-
-          {/* ── Nav links — absolutely centered ── */}
-          <div className="hidden lg:flex items-center gap-1 absolute left-1/2 -translate-x-1/2">
-            {navLinks.map((link) => (
-              <a
+        {/* Nav links — desktop */}
+        <div className="hidden lg:flex items-center gap-[0.75rem]">
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+            return (
+              <Link
                 key={link.href}
                 href={link.href}
-                onClick={() => setActive(link.href)}
-                className={`whitespace-nowrap px-4 py-2 rounded-xl text-[13px] font-medium transition-all duration-200 shrink-0 border ${active === link.href
-                    ? "text-purple-300 bg-purple-500/10 border-purple-500/20"
-                    : "text-slate-400 hover:text-slate-100 border-transparent hover:bg-white/5"
-                  }`}
+                className={`font-mono-label uppercase tracking-widest px-2 transition-colors duration-200 ${
+                  isActive
+                    ? "text-emerald-accent font-bold border-b-2 border-emerald-accent pb-1"
+                    : "text-on-surface-variant hover:text-emerald-accent"
+                }`}
               >
                 {t(link.labelKey)}
-              </a>
-            ))}
-          </div>
+              </Link>
+            );
+          })}
+        </div>
 
-          {/* ── Right side (Lang dropdown + CTA + hamburger) ── */}
-          <div className="flex items-center gap-3 shrink-0 z-10">
-            {/* Language dropdown */}
-            <div className="relative" ref={langRef}>
-              <button
-                onClick={() => setLangOpen(!langOpen)}
-                className={`flex items-center gap-1.5 h-9 px-3 rounded-xl border text-xs font-semibold transition-all duration-200 cursor-pointer ${
-                  langOpen
-                    ? "border-purple-500/30 bg-purple-500/10 text-purple-300"
-                    : "border-purple-500/20 bg-white/[0.03] text-slate-300 hover:border-purple-500/30 hover:bg-purple-500/10 hover:text-white"
-                }`}
-                aria-label="Change language"
-              >
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5">
-                  <circle cx="12" cy="12" r="10" />
-                  <path d="M2 12h20" />
-                  <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                </svg>
-                <span>{locale.toUpperCase()}</span>
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth={2.5}
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  className={`w-3 h-3 transition-transform duration-200 ${langOpen ? "rotate-180" : ""}`}
-                >
-                  <path d="m6 9 6 6 6-6" />
-                </svg>
-              </button>
-
-              {/* Dropdown */}
-              <div
-                className={`absolute right-0 top-full mt-2 w-40 rounded-xl border border-purple-500/15 overflow-hidden transition-all duration-200 origin-top-right ${
-                  langOpen
-                    ? "opacity-100 scale-100 translate-y-0"
-                    : "opacity-0 scale-95 -translate-y-1 pointer-events-none"
-                }`}
-                style={{ background: "rgba(15,15,26,0.95)", backdropFilter: "blur(20px)" }}
-              >
-                <div className="p-1.5">
-                  <button
-                    onClick={() => { if (locale !== "en") toggleLocale(); setLangOpen(false); }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
-                      locale === "en"
-                        ? "text-purple-300 bg-purple-500/10"
-                        : "text-slate-400 hover:text-white hover:bg-white/5"
-                    }`}
-                  >
-                    <span className="text-base">🇺🇸</span>
-                    <span>English</span>
-                    {locale === "en" && (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-purple-400 ml-auto">
-                        <path d="M20 6 9 17l-5-5" />
-                      </svg>
-                    )}
-                  </button>
-                  <button
-                    onClick={() => { if (locale !== "id") toggleLocale(); setLangOpen(false); }}
-                    className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
-                      locale === "id"
-                        ? "text-purple-300 bg-purple-500/10"
-                        : "text-slate-400 hover:text-white hover:bg-white/5"
-                    }`}
-                  >
-                    <span className="text-base">🇮🇩</span>
-                    <span>Indonesia</span>
-                    {locale === "id" && (
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-purple-400 ml-auto">
-                        <path d="M20 6 9 17l-5-5" />
-                      </svg>
-                    )}
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Hire Me — desktop only */}
-            <a
-              href="mailto:akhdan.anargya@gmail.com"
-              className="btn-glow text-sm rounded-xl shrink-0"
-              style={{ display: 'var(--hire-display, none)' }}
-            >
-              <span>{t("nav.hireMe")}</span>
-            </a>
-
-            {/* Hamburger — mobile/tablet */}
+        {/* Right side */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          {/* Language toggle */}
+          <div className="relative" ref={langRef}>
             <button
-              className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[6px] rounded-xl hover:bg-white/5 transition-colors"
-              onClick={() => setMenuOpen(!menuOpen)}
-              aria-label="Toggle menu"
+              onClick={() => setLangOpen(!langOpen)}
+              className="flex items-center gap-2 bg-charcoal-surface border border-border-default rounded-full px-3 py-1.5 transition-all hover:border-emerald-accent group cursor-pointer"
+              aria-label="Change language"
             >
-              <span className={`block w-5 h-0.5 bg-slate-300 rounded-full transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[8px]" : ""}`} />
-              <span className={`block w-5 h-0.5 bg-slate-300 rounded-full transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
-              <span className={`block w-5 h-0.5 bg-slate-300 rounded-full transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-[8px]" : ""}`} />
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-emerald-accent">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M2 12h20" />
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+              </svg>
+              <div className="flex items-center gap-1 font-mono-code">
+                <span className={locale === "en" ? "text-emerald-accent" : "text-on-surface-variant hover:text-emerald-accent transition-colors"}>{locale === "en" ? "EN" : "EN"}</span>
+                <span className="text-muted-gray">|</span>
+                <span className={locale === "id" ? "text-emerald-accent" : "text-on-surface-variant hover:text-emerald-accent transition-colors"}>{locale === "id" ? "ID" : "ID"}</span>
+              </div>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2.5} strokeLinecap="round" strokeLinejoin="round" className={`w-3 h-3 text-muted-gray group-hover:text-emerald-accent transition-all duration-200 ${langOpen ? "rotate-180" : ""}`}>
+                <path d="m6 9 6 6 6-6" />
+              </svg>
             </button>
-          </div>
 
-          {/* ── Mobile / tablet dropdown ── */}
-          <div
-            className={`lg:hidden absolute right-0 top-full mt-2 w-64 rounded-2xl border border-purple-500/15 overflow-hidden transition-all duration-200 origin-top-right z-50 ${menuOpen
-                ? "opacity-100 scale-100 translate-y-0"
-                : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+            {/* Language dropdown */}
+            <div
+              className={`absolute right-0 top-full mt-2 w-40 rounded-xl border border-border-default overflow-hidden transition-all duration-200 origin-top-right ${
+                langOpen
+                  ? "opacity-100 scale-100 translate-y-0"
+                  : "opacity-0 scale-95 -translate-y-1 pointer-events-none"
               }`}
-            style={{ background: "rgba(15,15,26,0.97)", backdropFilter: "blur(20px)" }}
-          >
-            <div className="p-2 space-y-1">
-              {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={() => { setMenuOpen(false); setActive(link.href); }}
-                  className={`flex items-center px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${active === link.href
-                      ? "text-purple-300 bg-purple-500/10"
-                      : "text-slate-400 hover:text-white hover:bg-white/5"
-                    }`}
+              style={{ background: "rgba(22,25,30,0.95)", backdropFilter: "blur(20px)" }}
+            >
+              <div className="p-1.5">
+                <button
+                  onClick={() => { if (locale !== "en") toggleLocale(); setLangOpen(false); }}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
+                    locale === "en"
+                      ? "text-emerald-accent bg-emerald-accent/10"
+                      : "text-on-surface-variant hover:text-on-surface hover:bg-white/5"
+                  }`}
                 >
-                  {t(link.labelKey)}
-                </a>
-              ))}
-              <div className="pt-1 pb-0.5 px-1">
-                <a
-                  href="mailto:akhdan.anargya@gmail.com"
-                  onClick={() => setMenuOpen(false)}
-                  className="btn-glow w-full text-sm rounded-xl shrink-0"
+                  <span className="text-base">🇺🇸</span>
+                  <span>English</span>
+                  {locale === "en" && (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-emerald-accent ml-auto">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  )}
+                </button>
+                <button
+                  onClick={() => { if (locale !== "id") toggleLocale(); setLangOpen(false); }}
+                  className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-200 cursor-pointer ${
+                    locale === "id"
+                      ? "text-emerald-accent bg-emerald-accent/10"
+                      : "text-on-surface-variant hover:text-on-surface hover:bg-white/5"
+                  }`}
                 >
-                  <span>{t("nav.hireMe")} ✉</span>
-                </a>
+                  <span className="text-base">🇮🇩</span>
+                  <span>Indonesia</span>
+                  {locale === "id" && (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={3} strokeLinecap="round" strokeLinejoin="round" className="w-3.5 h-3.5 text-emerald-accent ml-auto">
+                      <path d="M20 6 9 17l-5-5" />
+                    </svg>
+                  )}
+                </button>
               </div>
             </div>
+          </div>
+
+          {/* Available for Work pill */}
+          <div className="hidden sm:flex items-center gap-2 bg-charcoal-surface border border-border-default rounded-full px-4 py-1.5">
+            <span className="w-2 h-2 rounded-full bg-emerald-accent animate-pulse" />
+            <span className="font-mono-code text-on-surface-variant">Available for Work</span>
+          </div>
+
+          {/* Resume CTA — desktop */}
+          <Link
+            href="/contact"
+            className="hidden lg:inline-flex btn-primary px-8 py-3"
+          >
+            Resume
+          </Link>
+
+          {/* Hamburger — mobile/tablet */}
+          <button
+            className="lg:hidden w-10 h-10 flex flex-col items-center justify-center gap-[6px] rounded-xl hover:bg-white/5 transition-colors"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Toggle menu"
+          >
+            <span className={`block w-5 h-0.5 bg-on-surface-variant rounded-full transition-all duration-300 origin-center ${menuOpen ? "rotate-45 translate-y-[8px]" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-on-surface-variant rounded-full transition-all duration-300 ${menuOpen ? "opacity-0 scale-x-0" : ""}`} />
+            <span className={`block w-5 h-0.5 bg-on-surface-variant rounded-full transition-all duration-300 origin-center ${menuOpen ? "-rotate-45 -translate-y-[8px]" : ""}`} />
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile / tablet dropdown */}
+      <div
+        className={`lg:hidden absolute right-4 top-full mt-2 w-64 rounded-xl border border-border-default overflow-hidden transition-all duration-200 origin-top-right z-50 ${
+          menuOpen
+            ? "opacity-100 scale-100 translate-y-0"
+            : "opacity-0 scale-95 -translate-y-2 pointer-events-none"
+        }`}
+        style={{ background: "rgba(22,25,30,0.97)", backdropFilter: "blur(20px)" }}
+      >
+        <div className="p-2 space-y-1">
+          {/* Available for Work — mobile only */}
+          <div className="sm:hidden flex items-center gap-2 px-4 py-3 mb-1">
+            <span className="w-2 h-2 rounded-full bg-emerald-accent animate-pulse" />
+            <span className="font-mono-code text-on-surface-variant text-xs">Available for Work</span>
+          </div>
+          {navLinks.map((link) => {
+            const isActive = pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href));
+            return (
+              <Link
+                key={link.href}
+                href={link.href}
+                onClick={() => setMenuOpen(false)}
+                className={`flex items-center px-4 py-3 rounded-lg font-mono-label uppercase tracking-widest transition-all duration-200 ${
+                  isActive
+                    ? "text-emerald-accent bg-emerald-accent/10"
+                    : "text-on-surface-variant hover:text-on-surface hover:bg-white/5"
+                }`}
+              >
+                {t(link.labelKey)}
+              </Link>
+            );
+          })}
+          <div className="pt-1 pb-0.5 px-1">
+            <Link
+              href="/contact"
+              onClick={() => setMenuOpen(false)}
+              className="btn-primary w-full text-center"
+            >
+              Resume
+            </Link>
           </div>
         </div>
-      </nav>
-    </div>
+      </div>
+    </nav>
   );
 }

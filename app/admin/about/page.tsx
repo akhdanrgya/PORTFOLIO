@@ -60,7 +60,7 @@ export default function AboutAdminPage() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="btn-glow px-5 py-2.5 text-sm disabled:opacity-50 shrink-0"
+          className="btn-primary px-5 py-2.5 text-sm disabled:opacity-50 shrink-0"
         >
           <span className="flex items-center gap-1.5">
             {saving ? (
@@ -85,7 +85,7 @@ export default function AboutAdminPage() {
       {/* Profile Photo */}
       <div className="form-section">
         <h2 className="form-section-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-purple-400">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-emerald-accent">
             <circle cx="12" cy="8" r="4" /><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
           </svg>
           Profile Photo
@@ -101,7 +101,7 @@ export default function AboutAdminPage() {
           {data.profile_photo_url && (
             <div className="shrink-0">
               <p className="form-label mb-2">Preview</p>
-              <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-purple-500/40">
+              <div className="relative w-20 h-20 rounded-full overflow-hidden border-2 border-emerald-accent/40">
                 <Image src={data.profile_photo_url} alt="Profile preview" fill className="object-cover" />
               </div>
             </div>
@@ -112,7 +112,7 @@ export default function AboutAdminPage() {
       {/* Bio & Tagline */}
       <div className="form-section">
         <h2 className="form-section-title">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-purple-400">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-emerald-accent">
             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7" />
             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z" />
           </svg>
@@ -148,7 +148,7 @@ export default function AboutAdminPage() {
       <div className="form-section">
         <div className="flex items-center justify-between mb-4">
           <h2 className="form-section-title mb-0" style={{ borderBottom: "none", paddingBottom: 0 }}>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-purple-400">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.8} strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-emerald-accent">
               <rect x="3" y="3" width="18" height="18" rx="2" />
               <circle cx="8.5" cy="8.5" r="1.5" />
               <polyline points="21 15 16 10 5 21" />
@@ -165,8 +165,8 @@ export default function AboutAdminPage() {
 
         {bannerPhotos.length === 0 ? (
           <div
-            className="text-center py-8 text-slate-600 text-sm rounded-xl cursor-pointer hover:border-purple-500/30 transition-colors"
-            style={{ border: "1px dashed rgba(139,92,246,0.15)" }}
+            className="text-center py-8 text-slate-600 text-sm rounded-xl cursor-pointer hover:border-emerald-accent/30 transition-colors"
+            style={{ border: "1px dashed rgba(16,185,129,0.15)" }}
             onClick={addBannerSlot}
           >
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={1.5} strokeLinecap="round" className="w-8 h-8 mx-auto mb-2 text-slate-700">
@@ -177,7 +177,7 @@ export default function AboutAdminPage() {
         ) : (
           <div className="space-y-6">
             {bannerPhotos.map((photo, i) => (
-              <div key={i} className="relative p-4 rounded-xl" style={{ background: "rgba(139,92,246,0.04)", border: "1px solid rgba(139,92,246,0.1)" }}>
+              <div key={i} className="relative p-4 rounded-xl" style={{ background: "rgba(16,185,129,0.04)", border: "1px solid rgba(16,185,129,0.1)" }}>
                 <div className="flex items-center justify-between mb-3">
                   <span className="text-xs text-slate-500 font-medium">
                     Banner {i + 1}
@@ -211,7 +211,7 @@ export default function AboutAdminPage() {
         <button
           onClick={handleSave}
           disabled={saving}
-          className="btn-glow px-6 py-3 text-sm disabled:opacity-50"
+          className="btn-primary px-6 py-3 text-sm disabled:opacity-50"
         >
           <span>{saving ? "Saving..." : "Save All Changes"}</span>
         </button>

@@ -31,11 +31,7 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen grid-bg flex items-center justify-center px-4 relative overflow-hidden" style={{ background: "#0a0a0f" }}>
-      {/* Orbs */}
-      <div className="orb w-96 h-96 bg-purple-700 top-0 -left-16" />
-      <div className="orb w-72 h-72 bg-violet-600 bottom-0 -right-12" style={{ animationDelay: "3s" }} />
-
+    <div className="min-h-screen bg-charcoal-deep text-on-surface flex items-center justify-center px-4 relative overflow-hidden">
       <div className="relative z-10 w-full max-w-sm animate-fade-in">
         {/* Logo */}
         <div className="text-center mb-8">
@@ -44,7 +40,7 @@ export default function LoginPage() {
         </div>
 
         {/* Form */}
-        <div className="glass-card p-7">
+        <div className="bg-charcoal-surface border border-border-default rounded-2xl p-7">
           <form onSubmit={handleSubmit} className="space-y-5">
             <div>
               <label className="form-label">Username</label>
@@ -111,7 +107,7 @@ export default function LoginPage() {
             <button
               type="submit"
               disabled={loading}
-              className="btn-glow w-full py-3 text-sm mt-1 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="btn-primary w-full py-3 text-sm mt-1 disabled:opacity-50 disabled:cursor-not-allowed justify-center"
             >
               <span className="flex items-center justify-center gap-2">
                 {loading ? (

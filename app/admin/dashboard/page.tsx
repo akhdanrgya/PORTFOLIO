@@ -147,14 +147,14 @@ export default async function DashboardPage() {
               href={link.href}
               className="group list-item flex items-center gap-4"
             >
-              <div className="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 group-hover:bg-purple-500/18 group-hover:border-purple-500/35 transition-all duration-300 shrink-0">
+              <div className="w-12 h-12 rounded-xl bg-emerald-accent/10 border border-emerald-accent/20 flex items-center justify-center text-emerald-accent group-hover:bg-emerald-accent/20 group-hover:border-emerald-accent/40 transition-all duration-300 shrink-0">
                 {link.icon}
               </div>
               <div className="flex-1 min-w-0">
                 <p className="text-slate-200 font-semibold text-sm sm:text-base group-hover:text-white transition-colors leading-tight">{link.label}</p>
                 <p className="text-slate-500 text-xs mt-1 truncate">{link.desc}</p>
               </div>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-slate-700 group-hover:text-purple-400 transition-colors shrink-0">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" className="w-5 h-5 text-slate-700 group-hover:text-emerald-accent transition-colors shrink-0">
                 <path d="M9 18l6-6-6-6" />
               </svg>
             </Link>
@@ -163,7 +163,7 @@ export default async function DashboardPage() {
       </div>
 
       {/* View portfolio banner */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 p-6 sm:p-8 rounded-2xl border border-purple-500/15" style={{ background: "linear-gradient(135deg, rgba(139,92,246,0.06), rgba(124,58,237,0.03))" }}>
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-5 p-6 sm:p-8 rounded-2xl border border-emerald-accent/20" style={{ background: "linear-gradient(135deg, rgba(16,185,129,0.06), rgba(5,150,105,0.03))" }}>
         <div>
           <p className="text-white font-bold text-lg">View Live Portfolio</p>
           <p className="text-slate-500 text-sm mt-1">Open your portfolio in a new tab to see your changes</p>

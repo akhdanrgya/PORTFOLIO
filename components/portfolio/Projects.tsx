@@ -19,65 +19,62 @@ export default function Projects({ projects }: { projects: Project[] }) {
   const featured = projects.filter((p) => p.featured);
 
   return (
-    <section id="projects" className="w-full py-16 sm:py-24 lg:py-40 px-4 sm:px-6 lg:px-8 flex justify-center">
-      <div className="w-full max-w-6xl">
-        <AnimatedSection className="text-center mb-16">
-          <span className="text-purple-400 text-sm font-semibold tracking-widest uppercase">{t("projects.subtitle")}</span>
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white mt-2">
-            {t("projects.title1")}<span className="gradient-text">{t("projects.title2")}</span>
-          </h2>
-          <div className="section-divider mx-auto" />
-        </AnimatedSection>
+    <section id="projects" className="max-w-7xl mx-auto px-4 sm:px-8 py-32">
+      <AnimatedSection className="text-center mb-16">
+        <h2 className="section-label mb-4">Portfolio</h2>
+        <p className="text-headline-md text-on-surface">
+          Latest <span className="text-emerald-accent border-b-2 border-emerald-accent pb-1">Projects</span>
+        </p>
+      </AnimatedSection>
 
-        {/* Featured projects */}
-        {featured.length > 0 && (
-          <AnimatedSection className="mb-12">
-            <h3 className="text-lg font-bold text-slate-300 mb-4 flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-yellow-400" /> {t("projects.featured")}
-            </h3>
-            <div className="grid md:grid-cols-2 gap-6">
-              {featured.slice(0, 2).map((project) => (
-                <ProjectCard key={project.id} project={project} featured />
-              ))}
-            </div>
-          </AnimatedSection>
-        )}
-
-        {/* Category filter */}
-        {categories.length > 1 && (
-          <AnimatedSection className="flex flex-wrap gap-4 justify-center mb-8">
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setActiveCategory(cat)}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
-                  activeCategory === cat
-                    ? "bg-purple-600 text-white shadow-glow"
-                    : "glass-card !transform-none text-slate-400 hover:text-slate-200"
-                }`}
-              >
-                {cat}
-              </button>
+      {/* Featured projects */}
+      {featured.length > 0 && (
+        <AnimatedSection className="mb-12">
+          <h3 className="font-mono-label text-on-surface-variant uppercase tracking-wider mb-4 flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-yellow-400" /> {t("projects.featured")}
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            {featured.slice(0, 2).map((project) => (
+              <ProjectCard key={project.id} project={project} featured />
             ))}
-          </AnimatedSection>
-        )}
-
-        {/* All projects grid */}
-        <AnimatedSection stagger>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-10">
-            {filtered.length > 0 ? (
-              filtered.map((project) => (
-                <ProjectCard key={project.id} project={project} />
-              ))
-            ) : (
-              <div className="col-span-3 text-center py-16">
-                <div className="text-5xl mb-4">◈</div>
-                <p className="text-slate-500">{t("projects.noProjects")}</p>
-              </div>
-            )}
           </div>
         </AnimatedSection>
-      </div>
+      )}
+
+      {/* Category filter */}
+      {categories.length > 1 && (
+        <AnimatedSection className="flex flex-wrap gap-3 justify-center mb-8">
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setActiveCategory(cat)}
+              className={`px-4 py-2 rounded-full font-mono-code transition-all duration-200 ${
+                activeCategory === cat
+                  ? "bg-emerald-accent text-charcoal-deep font-medium"
+                  : "bg-charcoal-surface border border-border-default text-on-surface-variant hover:border-emerald-accent hover:text-emerald-accent"
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </AnimatedSection>
+      )}
+
+      {/* All projects grid */}
+      <AnimatedSection stagger>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+          {filtered.length > 0 ? (
+            filtered.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))
+          ) : (
+            <div className="col-span-3 text-center py-16">
+              <div className="text-5xl mb-4 text-emerald-accent/30">◈</div>
+              <p className="text-muted-gray">{t("projects.noProjects")}</p>
+            </div>
+          )}
+        </div>
+      </AnimatedSection>
     </section>
   );
 }
@@ -89,71 +86,69 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
   return (
     <div
       onClick={() => router.push(`/projects/${project.id}`)}
-      className={`glass-card overflow-hidden group block cursor-pointer ${featured ? "md:col-span-1" : ""}`}
+      className={`bento-card p-0 overflow-hidden flex flex-col group cursor-pointer backdrop-blur-md bg-charcoal-surface/80 border-white/5 ${featured ? "md:col-span-1" : ""}`}
     >
       {/* Thumbnail */}
-      <div className={`relative overflow-hidden ${featured ? "aspect-video" : "aspect-video"}`}>
+      <div className="h-48 overflow-hidden bg-charcoal-deep border-b border-border-default relative ring-1 ring-inset ring-white/5">
         {project.thumbnail_url ? (
           <Image
             src={project.thumbnail_url}
             alt={project.title}
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-            className="object-cover group-hover:scale-105 transition-transform duration-500"
+            className="object-cover object-top opacity-80 group-hover:opacity-100 transition-opacity duration-300"
           />
         ) : (
-          <div className="w-full h-full bg-gradient-to-br from-purple-900/40 to-dark-300 flex items-center justify-center">
-            <span className="text-purple-500/40 text-6xl">◈</span>
+          <div className="w-full h-full bg-charcoal-surface flex items-center justify-center">
+            <span className="text-emerald-accent/20 text-6xl">◈</span>
+          </div>
+        )}
+        {project.category && (
+          <div className="absolute top-4 right-4 bg-charcoal-surface border border-border-default px-2 py-1 rounded text-[10px] font-mono-code text-on-surface-variant uppercase">
+            {project.category}
           </div>
         )}
         {featured && (
-          <span className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-yellow-500/20 border border-yellow-500/40 text-yellow-300 text-xs font-semibold">
+          <div className="absolute top-4 left-4 bg-yellow-500/20 border border-yellow-500/40 px-2 py-1 rounded text-[10px] text-yellow-300 font-medium">
             ★ Featured
-          </span>
-        )}
-        {project.category && (
-          <span className="absolute top-3 right-3 tag">
-            {project.category}
-          </span>
+          </div>
         )}
       </div>
 
       {/* Content */}
-      <div className="p-6 lg:p-8">
-        <h3 className="text-white font-bold text-lg mb-2 group-hover:text-purple-300 transition-colors">
+      <div className="flex flex-col flex-grow p-8">
+        <h3 className="text-headline-sm text-on-surface mb-2 group-hover:text-emerald-accent transition-colors">
           {project.title}
         </h3>
         {project.description && (
-          <p className="text-slate-400 text-sm leading-relaxed mb-4 line-clamp-2">
+          <p className="text-body-base text-on-surface-variant mb-6 flex-grow text-sm line-clamp-2">
             {project.description}
           </p>
         )}
 
         {/* Tech stack */}
         {project.tech_stack && project.tech_stack.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-4">
+          <div className="flex flex-wrap gap-2 mb-6">
             {project.tech_stack.slice(0, 4).map((tech) => (
-              <span key={tech} className="tag text-[11px]">
-                {tech}
-              </span>
+              <span key={tech} className="skill-tag text-[11px] py-1">{tech}</span>
             ))}
             {project.tech_stack.length > 4 && (
-              <span className="tag text-[11px]">+{project.tech_stack.length - 4}</span>
+              <span className="skill-tag text-[11px] py-1">+{project.tech_stack.length - 4}</span>
             )}
           </div>
         )}
 
         {/* Links */}
-        <div className="flex gap-3">
+        <div className="flex gap-2 mt-auto">
           {project.live_url && (
             <a
               href={project.live_url}
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="btn-glow px-4 py-2 text-xs flex-1 text-center"
+              className="btn-primary px-4 py-2 text-xs flex-1 text-center"
             >
-              <span>{t("projects.liveDemo")}</span>
+              {t("projects.liveDemo")}
             </a>
           )}
           {project.github_url && (
@@ -162,7 +157,7 @@ function ProjectCard({ project, featured = false }: { project: Project; featured
               target="_blank"
               rel="noopener noreferrer"
               onClick={(e) => e.stopPropagation()}
-              className="btn-outline px-4 py-2 text-xs flex-1 text-center"
+              className="btn-secondary px-4 py-2 text-xs flex-1 text-center"
             >
               GitHub
             </a>
