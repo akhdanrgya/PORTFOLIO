@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ToastContainer from "@/components/ui/Toast";
 import { LanguageProvider } from "@/lib/LanguageContext";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "Akhdan Anargya Arisadi — Software Engineer & Founder of GokilTech",
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <LanguageProvider>
           {children}
           <ToastContainer />
+          <Analytics />
         </LanguageProvider>
       </body>
     </html>
