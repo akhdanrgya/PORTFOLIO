@@ -39,3 +39,12 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# sensitive scripts (contains credentials)
+/scripts/
+
+# database schema files
+*.sql
+
+# generated stitch HTML files
+stitch_*.html
